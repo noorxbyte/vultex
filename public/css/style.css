@@ -1,0 +1,72 @@
+/*
+ * Global custom CSS
+ */
+
+/* Highlight search query */
+.highlight
+{
+    background-color: yellow;
+}
+
+/* display hand on thead hover */
+.sortable th
+{
+    cursor: pointer;
+    cursor: hand;
+}
+
+/* Make pagination links visible */
+.pager
+{
+    font-size: 250%;
+}
+
+/* center nav pills and tabs */
+.nav-tabs > li, .nav-pills > li
+{
+    float:none;
+    display:inline-block;
+}
+
+/* center nav pills and tabs */
+.nav-tabs, .nav-pills
+{
+    text-align:center;
+}
+
+/* non fluid table */
+.table-nonfluid
+{
+	width: auto;
+	margin: 0 auto !important;
+   	float: none !important;
+}
+
+/* left align table's cells */
+td
+{
+	text-align: left;
+}
+
+/* center align container contents */
+.container
+{
+	margin-left: auto;
+    margin-right: auto;
+}
+
+/* center align headings and footer */
+h3, h4, #bottom
+{
+    text-align: center;
+}
+
+/* footer styles */
+#bottom
+{
+    /* shrink bottom's font size */
+    font-size: smaller;
+
+    /* surround with whitespace */
+    margin: 20px;
+}
