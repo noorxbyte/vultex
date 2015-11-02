@@ -9,6 +9,7 @@ use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Controllers\Controller;
 
 use App\Language;
+use Session;
 
 class LanguagesController extends Controller
 {
@@ -50,6 +51,11 @@ class LanguagesController extends Controller
     {
         // create the language
         Language::create($request->all());
+
+        // flash message
+        Session::flash('flash_message', 'Language added successfully.');
+
+        return redirect()->route('languages.index');
     }
 
     /**
@@ -92,6 +98,9 @@ class LanguagesController extends Controller
     public function update(StoreLanguageRequest $request, $id)
     {
         Language::find($id)->update($request->all());
+
+        // flash message
+        Session::flash('flash_message', 'Language updated successfully.');
 
         return redirect()->route('languages.index');
     }

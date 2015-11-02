@@ -16,6 +16,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// languages routes
 	Route::resource('languages', 'LanguagesController');
+
+	// qualities routes
+	Route::resource('qualities', 'QualitiesController');
 	
 });
 
