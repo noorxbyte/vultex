@@ -19,6 +19,9 @@ Route::group(['middleware' => 'auth'], function() {
 
 	// qualities routes
 	Route::resource('qualities', 'QualitiesController');
+
+	// products routes
+	Route::resource('products', 'ProductsController');
 	
 });
 
@@ -56,4 +59,12 @@ View::composer('auth.register', function($view) {
 	$heading = "Register";
 
 	$view->with('title', $title)->with('heading', $heading);
+});
+
+View::composer('products.__movie', function($view) {
+	// get data
+	$languages = App\Language::lists('language', 'id')->toArray();
+	$qualities = App\Quality::lists('quality', 'id')->toArray();
+
+	$view->with('languages', $languages)->with('qualities', $qualities);
 });

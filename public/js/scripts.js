@@ -96,3 +96,30 @@ $(document).ready(function() {
 	}
 
 });
+
+// get imdb data by title
+function getIMDBByTitle()
+{
+	var url = "http://www.omdbapi.com/?t=" + document.getElementById("title").value;
+	getHTTP(url);
+}
+
+// get imdb data by imdb id
+function getIMDBByID()
+{
+	var url = "http://www.omdbapi.com/?i=" + document.getElementById("imdb").value;
+	getHTTP(url);
+}
+
+function getHTTP(url)
+{
+	$.get(url, function(data, status){
+		data = JSON.stringify(data);
+		var obj = jQuery.parseJSON(data);
+		$('#imdb').val(obj.imdbID);
+		$('#title').val(obj.Title);
+		$('#release_year').val(parseInt(obj.Year));
+		$('#plot').val(obj.Plot);
+		document.getElementById("check").setAttribute("href", "http://www.imdb.com/title/" + obj.imdbID + "/");
+    });
+}
