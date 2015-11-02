@@ -12,7 +12,7 @@ class CreateLanguagesTable extends Migration
      */
     public function up()
     {
-        Schema::table('languages', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('language');
             $table->timestamps();
@@ -26,8 +26,6 @@ class CreateLanguagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('languages', function (Blueprint $table) {
-            Schema::drop('languages');
-        });
+        Schema::drop('languages');
     }
 }

@@ -12,7 +12,7 @@ class CreateQualitiesTable extends Migration
      */
     public function up()
     {
-        Schema::table('qualities', function (Blueprint $table) {
+        Schema::create('qualities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('quality');
             $table->timestamps();
@@ -26,8 +26,6 @@ class CreateQualitiesTable extends Migration
      */
     public function down()
     {
-        Schema::table('qualities', function (Blueprint $table) {
-            Schema::drop('qualities');
-        });
+        Schema::drop('qualities');
     }
 }

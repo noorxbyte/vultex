@@ -12,7 +12,7 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('active')->default(true);
             $table->enum('type', ['MOVIE', 'SERIES', 'SOFTWARE', 'OTHER']);
@@ -30,8 +30,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            Schema::drop('products');
-        });
+        Schema::drop('products');
     }
 }
