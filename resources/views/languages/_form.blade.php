@@ -12,7 +12,7 @@
 
 <div class="text-center">
 	<div class="form-group">
-		{!! Form::text('language', null, ['class' => 'form-control', 'placeholder' => 'Language', 'required']) !!}
+		{!! Form::text('language', null, ['class' => 'form-control', 'placeholder' => 'Language', 'required', 'autofocus']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::submit($submitBtnText, ['class' => 'btn btn-primary']) !!}

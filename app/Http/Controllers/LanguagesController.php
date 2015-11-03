@@ -55,7 +55,7 @@ class LanguagesController extends Controller
         // flash message
         Session::flash('flash_message', 'Language added successfully.');
 
-        return redirect()->route('languages.index');
+        return redirect()->route('languages.create');
     }
 
     /**

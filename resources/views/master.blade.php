@@ -45,6 +45,9 @@
             <hr/>
 
             <!-- Navigation Bar -->
+            @if(Auth::check())
+                @include('_navbar')
+            @endif
 
         </div>
 

@@ -55,7 +55,7 @@ class QualitiesController extends Controller
         // flash message
         Session::flash('flash_message', 'Quality added successfully.');
 
-        return redirect()->route('qualities.index');
+        return redirect()->route('qualities.create');
     }
 
     /**

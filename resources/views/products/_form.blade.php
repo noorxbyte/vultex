@@ -15,7 +15,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label">{{ $name or 'Product Name' }}</label>
         <div class="col-md-4">
-            {!! Form::text('name', null, ['id' => ($type == 'movie' || $type == 'series')?'title':'name', 'class' => 'form-control', 'placeholder' => isset($namePlaceHolder)?$namePlaceHolder:'Product Name', 'onchange' => 'getIMDBByTitle()', 'required']) !!}
+            {!! Form::text('name', null, ['id' => ($type == 'movie' || $type == 'series')?'title':'name', 'class' => 'form-control', 'placeholder' => isset($namePlaceHolder)?$namePlaceHolder:'Product Name', 'onchange' => 'getIMDBByTitle()', 'required', 'autofocus']) !!}
         </div>
 </div>
 
