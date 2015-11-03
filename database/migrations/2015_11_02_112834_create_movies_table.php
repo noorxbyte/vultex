@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovseTable extends Migration
+class CreateMoviesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateMovseTable extends Migration
      */
     public function up()
     {
-        Schema::create('movse', function (Blueprint $table) {
+        Schema::create('movies', function (Blueprint $table) {
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('imdb', 16)->unique();
@@ -32,6 +32,6 @@ class CreateMovseTable extends Migration
      */
     public function down()
     {
-        Schema::drop('movse');
+        Schema::drop('movies');
     }
 }
