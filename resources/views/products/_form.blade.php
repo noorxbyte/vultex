@@ -10,39 +10,38 @@
     </div>
 @endif
 
-<div class="form-group">
-    <label class="col-md-4 control-label" for="active">Active</label>
-    <div class="col-md-4">
-        {!! Form::checkbox('active', null, ['class' => 'form-control']) !!}
-    </div>
-</div>
+{!! Form::input('hidden', 'type', isset($type)?$type:null) !!}
 
 <div class="form-group">
-    <label class="col-md-4 control-label">Type</label>
-    <div class="col-md-4">
-        {!! Form::text('type', isset($type)?$type:null, ['class' => 'form-control', 'readonly']) !!}
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-md-4 control-label">Title</label>
+    <label class="col-md-4 control-label">{{ $name or 'Product Name' }}</label>
         <div class="col-md-4">
-            {!! Form::text('name', null, ['id' => 'title', 'class' => 'form-control', 'placeholder' => 'Movie/Series Title', 'onchange' => 'getIMDBByTitle()', 'required']) !!}
+            {!! Form::text('name', null, ['id' => ($type == 'movie' || $type == 'series')?'title':'name', 'class' => 'form-control', 'placeholder' => isset($namePlaceHolder)?$namePlaceHolder:'Product Name', 'onchange' => 'getIMDBByTitle()', 'required']) !!}
         </div>
 </div>
 
 @include('products.__' . $type)
 
 <div class="form-group">
-    <label class="col-md-4 control-label">Plot</label>
+    <label class="col-md-4 control-label">{{ $description or 'Description' }}</label>
     <div class="col-md-4">
-        {!! Form::textarea('description', null, ['id' => 'plot', 'class' => 'form-control', 'rows' => 5]) !!}
+        {!! Form::textarea('description', null, ['id' => ($type == 'movie' || $type == 'series')?'plot':'description', 'class' => 'form-control', 'rows' => 5]) !!}
     </div>
 </div>
 
 <div class="form-group">
     <label class="col-md-4 control-label">Price</label>
     <div class="col-md-4">
-        {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => 'Price', 'required']) !!}
+        {!! Form::number('price', null, ['class' => 'form-control', 'placeholder' => 'Price', 'step' => 0.01, 'min' => 0, 'required']) !!}
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label"></label>
+    <div class="col-md-4">
+        <span class="pull-left">{!! Form::submit($submitBtnText, ['class' => 'btn btn-default']) !!}</span>
+        <span class="pull-right">
+            <label class="control-label" for="active">Active</label>&nbsp;&nbsp;
+            {!! Form::checkbox('active', null, ['class' => 'form-control']) !!}
+        </span>
     </div>
 </div>

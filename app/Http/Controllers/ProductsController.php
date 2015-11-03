@@ -29,10 +29,20 @@ class ProductsController extends Controller
         if (empty($request->type) || !in_array($request->type, ['movie', 'series', 'software', 'other']))
             return redirect()->route('products.index');
 
-        return view('products.create')
-            ->with('title', 'New Product')
-            ->with('heading', 'New Product')
-            ->with('type', $request->type);
+        $type = $request->type;
+        $title = $heading = 'New ' . ucfirst($request->type);
+        switch ($request->type)
+        {
+            case 'movie':
+                $name = $namePlaceHolder = ucfirst($request->type) . ' Title';
+                $description = 'Plot';
+
+            case 'series':
+                $name = $namePlaceHolder = ucfirst($request->type) . ' Title';
+                $description = 'Plot';
+        }
+
+        return view('products.create', compact('title', 'heading', 'type', 'name', 'namePlaceHolder', 'description'));
     }
 
     /**

@@ -61,7 +61,17 @@ View::composer('auth.register', function($view) {
 	$view->with('title', $title)->with('heading', $heading);
 });
 
+// pass language and quality list into movie page
 View::composer('products.__movie', function($view) {
+	// get data
+	$languages = App\Language::lists('language', 'id')->toArray();
+	$qualities = App\Quality::lists('quality', 'id')->toArray();
+
+	$view->with('languages', $languages)->with('qualities', $qualities);
+});
+
+// pass language and quality list into series page
+View::composer('products.__series', function($view) {
 	// get data
 	$languages = App\Language::lists('language', 'id')->toArray();
 	$qualities = App\Quality::lists('quality', 'id')->toArray();
