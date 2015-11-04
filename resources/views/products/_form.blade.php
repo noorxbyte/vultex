@@ -10,7 +10,7 @@
     </div>
 @endif
 
-{!! Form::input('hidden', 'type', isset($type)?$type:null) !!}
+{!! Form::input('hidden', 'type', isset($type)?strtoupper($type):null) !!}
 
 <div class="form-group">
     <label class="col-md-4 control-label">{{ $name or 'Product Name' }}</label>
@@ -40,8 +40,7 @@
     <div class="col-md-4">
         <span class="pull-left">{!! Form::submit($submitBtnText, ['class' => 'btn btn-default']) !!}</span>
         <span class="pull-right">
-            <label class="control-label" for="active">Active</label>&nbsp;&nbsp;
-            {!! Form::checkbox('active', null, ['class' => 'form-control']) !!}
+            {!! Form::select('active', [1 => 'Active', 0 => 'Obselete'], null, ['class' => 'form-control']) !!}
         </span>
     </div>
 </div>

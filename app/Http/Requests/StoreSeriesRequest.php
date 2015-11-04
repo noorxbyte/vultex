@@ -6,7 +6,7 @@ use App\Http\Requests\Request;
 
 use Auth;
 
-class StoreLanguageRequest extends Request
+class StoreSeriesRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreLanguageRequest extends Request
     public function rules()
     {
         return [
-            'language' =>'required|max:32|unique:languages',
+            //
         ];
     }
 }

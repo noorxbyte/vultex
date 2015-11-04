@@ -6,7 +6,7 @@ use App\Http\Requests\Request;
 
 use Auth;
 
-class StoreLanguageRequest extends Request
+class StoreProductRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,11 @@ class StoreLanguageRequest extends Request
     public function rules()
     {
         return [
-            'language' =>'required|max:32|unique:languages',
+            'active' => 'required|boolean',
+            'type' => 'required|in:MOVIE,SERIES,SOFTWARE,OTHER',
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0.01|regex:/^\d*(\.\d{2})?$/',
         ];
     }
 }

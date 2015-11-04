@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+use Auth;
+
 class StoreQualityRequest extends Request
 {
     /**
@@ -13,7 +15,7 @@ class StoreQualityRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +26,7 @@ class StoreQualityRequest extends Request
     public function rules()
     {
         return [
-            'quality' => 'required|max:32',
+            'quality' => 'required|max:32|unique:qualities',
         ];
     }
 }

@@ -14,13 +14,13 @@ class CreateMoviesTable extends Migration
     {
         Schema::create('movies', function (Blueprint $table) {
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('imdb', 16)->unique();
             $table->smallInteger('release_year')->unsigned();
-            $table->integer('language')->unsigned();
-            $table->foreign('language')->references('id')->on('languages');
-            $table->integer('quality')->unsigned();
-            $table->foreign('quality')->references('id')->on('qualities');
+            $table->integer('language_id')->unsigned();
+            $table->foreign('language_id')->references('id')->on('languages');
+            $table->integer('quality_id')->unsigned();
+            $table->foreign('quality_id')->references('id')->on('qualities');
             $table->timestamps();
         });
     }

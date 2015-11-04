@@ -5,7 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\StoreMovieRequest;
+use App\Http\Requests\StoreSeriesRequest;
 use App\Http\Controllers\Controller;
+
+use App\Product;
+use App\Series;
+use App\Movie;
+
+use DB;
 
 class ProductsController extends Controller
 {
@@ -26,7 +35,7 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
-        if (empty($request->type) || !in_array($request->type, ['movie', 'series', 'software', 'other']))
+        if (empty($request->type) || !in_array($request->type, ['movie', 'series']))
             return redirect()->route('products.index');
 
         $type = $request->type;
@@ -51,9 +60,42 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        // validate request further according to type
+        switch ($request->type)
+        {
+            case 'MOVIE':
+                $movRequest = new StoreMovieRequest;
+                $this->validate($request, $movRequest->rules());
+                $info = new Movie($request->all());
+                break;
+            case 'SERIES':
+                $tvRequest = new StoreMovieRequest;
+                $this->validate($request, $tvRequest->rules());
+                $info = new Series($request->all());
+                break;
+        }
+
+        // create product record
+        $product = Product::create($request->all());
+
+        // use database transaction to save the records
+        DB::transaction(function () use ($product, $info) {
+            // save the product record
+            $product->save();
+
+            // set the product id of the details record
+            $info->product_id = $product->id;
+
+            // save the details record
+            $info->save();
+        });
+
+        // flash message
+        session()->flash('flash_message', 'Product added successfully.');
+
+        return redirect()->route('products.create', ['type' => strtolower($request->type)]);
     }
 
     /**

@@ -6,7 +6,7 @@ use App\Http\Requests\Request;
 
 use Auth;
 
-class StoreLanguageRequest extends Request
+class StoreMovieRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,10 @@ class StoreLanguageRequest extends Request
     public function rules()
     {
         return [
-            'language' =>'required|max:32|unique:languages',
+            'imdb' => 'required|max:16|unique:movies',
+            'release_year' => 'required|integer',
+            'language_id' => 'required|exists:languages,id',
+            'quality_id' => 'required|exists:qualities,id',
         ];
     }
 }

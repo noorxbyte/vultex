@@ -11,7 +11,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Year</label>
         <div class="col-md-4">
-            {!! Form::text('year', null, ['id' => 'release_year', 'class' => 'form-control', 'placeholder' => 'Release Year', 'required']) !!}
+            {!! Form::text('release_year', null, ['id' => 'release_year', 'class' => 'form-control', 'placeholder' => 'Release Year', 'required']) !!}
         </div>
 </div>
 
@@ -25,6 +25,6 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Quality</label>
         <div class="col-md-4">
-            {!! Form::select('quality', ['0' => '-- Quality --'] + $qualities, null, ['class' => 'form-control']) !!}
+            {!! Form::select('quality_id', ['0' => '-- Quality --'] + $qualities, null, ['class' => 'form-control']) !!}
         </div>
 </div>

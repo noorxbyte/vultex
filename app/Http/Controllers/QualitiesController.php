@@ -9,7 +9,6 @@ use App\Http\Requests\StoreQualityRequest;
 use App\Http\Controllers\Controller;
 
 use App\Quality;
-use Session;
 
 class QualitiesController extends Controller
 {
@@ -53,7 +52,7 @@ class QualitiesController extends Controller
         Quality::create($request->all());
 
         // flash message
-        Session::flash('flash_message', 'Quality added successfully.');
+        session()->flash('flash_message', 'Quality added successfully.');
 
         return redirect()->route('qualities.create');
     }
@@ -100,7 +99,7 @@ class QualitiesController extends Controller
         Quality::find($id)->update($request->all());
 
         // flash message
-        Session::flash('flash_message', 'Quality updated successfully.');
+        session()->flash('flash_message', 'Quality updated successfully.');
 
         return redirect()->route('qualities.index');
     }
