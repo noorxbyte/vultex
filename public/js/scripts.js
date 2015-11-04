@@ -98,17 +98,13 @@ $(document).ready(function() {
 	/*
 	 * Toggle movie list dropdown
 	 */
-	$('#moviesToggle').click(function() {
-		$('.panel').slideUp('fast');
-		$('#moviesData').slideToggle('fast');
-	});
-
-	/*
-	 * Toggle series list dropdown
-	 */
-	$('#seriesToggle').click(function() {
-		$('.panel').slideUp('fast');
-		$('#seriesData').slideToggle('fast');
+	$('.toggle').click(function() {
+		// slide up others
+		$('.toggle').not(this).each(function() {
+        	$(this).next().slideUp('fast');
+     	});
+     	// toggle clicked
+     	$(this).next().slideToggle('fast');
 	});
 
 });

@@ -38,7 +38,7 @@
 
 		<!-- display movie list -->
 		<div id="moviesToggle" class="toggle"><h4>Movies</h4></div>
-		<div id="moviesData" class="panel"><br><br>
+		<div id="moviesData" class="panel"><br>
 			@if(sizeof($movies) != 0)
 				Movies
 			@else
@@ -47,7 +47,7 @@
 		</div>
 
 		<div id="seriesToggle" class="toggle"><h4>Series</h4></div>
-		<div id="seriesData" class="panel">
+		<div id="seriesData" class="panel"><br>
 			@if(sizeof($series) != 0)
 				Series
 			@else
