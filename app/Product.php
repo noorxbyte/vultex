@@ -21,4 +21,13 @@ class Product extends Model
     {
     	return $this->hasMany('App\Movie');
     }
+
+    /**
+     * Get the series info of movie
+     *
+     */
+    public function series()
+    {
+        return $this->hasMany('App\Series');
+    }
 }

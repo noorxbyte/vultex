@@ -95,6 +95,22 @@ $(document).ready(function() {
 		}
 	}
 
+	/*
+	 * Toggle movie list dropdown
+	 */
+	$('#moviesToggle').click(function() {
+		$('.panel').slideUp('fast');
+		$('#moviesData').slideToggle('fast');
+	});
+
+	/*
+	 * Toggle series list dropdown
+	 */
+	$('#seriesToggle').click(function() {
+		$('.panel').slideUp('fast');
+		$('#seriesData').slideToggle('fast');
+	});
+
 });
 
 // get imdb data by title

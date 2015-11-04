@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Series;
+use App\Movie;
+
 class PagesController extends Controller
 {
     /**
@@ -16,7 +19,15 @@ class PagesController extends Controller
      */
     public function index(Request $request)
     {
+        $movies = Movie::all();
+        $series = Movie::all();
+
         $request->flash();
-        return view('pages.index')->with('title', 'Welcome')->with('heading', 'Welcome');
+
+        return view('pages.index')
+            ->with('title', 'Welcome')
+            ->with('heading', 'Welcome')
+            ->with('movies', $movies)
+            ->with('series', $series);
     }
 }
