@@ -42,6 +42,11 @@ class PagesController extends Controller
                 ->orWhere('description', 'LIKE', '%' . $request->q . '%')
                 ->get();
         }
+        else
+        {
+            $movies = $movies->get();
+            $series = $series->get();
+        }
 
         $request->flash();
 
