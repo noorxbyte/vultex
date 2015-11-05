@@ -26,4 +26,22 @@ class Movie extends Model
     {
     	return $this->belongsTo('App\Product');
     }
+
+    /**
+     * Get the language of movie
+     *
+     */
+    public function language()
+    {
+        return $this->belongsTo('App\Language');
+    }
+
+    /**
+     * Get the quality of movie
+     *
+     */
+    public function quality()
+    {
+        return $this->belongsTo('App\Quality');
+    }
 }

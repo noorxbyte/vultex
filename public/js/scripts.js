@@ -96,7 +96,7 @@ $(document).ready(function() {
 	}
 
 	/*
-	 * Toggle movie list dropdown
+	 * Handle sliders in main page
 	 */
 	$('.toggle').click(function() {
 		// slide up others
@@ -130,7 +130,7 @@ function getHTTP(url)
 		var obj = jQuery.parseJSON(data);
 		$('#imdb').val(obj.imdbID);
 		$('#title').val(obj.Title);
-		$('#release_year').val(parseInt(obj.Year));
+		$('#release_year').val(obj.Year);
 		$('#plot').val(obj.Plot);
 		document.getElementById("check").setAttribute("href", "http://www.imdb.com/title/" + obj.imdbID + "/");
     });

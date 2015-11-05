@@ -71,7 +71,7 @@ class ProductsController extends Controller
                 $info = new Movie($request->all());
                 break;
             case 'SERIES':
-                $tvRequest = new StoreMovieRequest;
+                $tvRequest = new StoreSeriesRequest;
                 $this->validate($request, $tvRequest->rules());
                 $info = new Series($request->all());
                 break;

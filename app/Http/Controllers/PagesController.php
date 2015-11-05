@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Product;
 use App\Series;
 use App\Movie;
 
@@ -19,8 +20,8 @@ class PagesController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = Movie::all();
-        $series = Movie::all();
+        $movies = Product::where('type', 'MOVIE')->with('movie')->get();
+        $series = Product::where('type', 'SERIES')->with('series')->get();
 
         $request->flash();
 

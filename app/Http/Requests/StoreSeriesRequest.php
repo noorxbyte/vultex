@@ -26,7 +26,10 @@ class StoreSeriesRequest extends Request
     public function rules()
     {
         return [
-            //
+            'imdb' => 'required|max:16|unique:series',
+            'release_year' => 'required',
+            'language_id' => 'required|exists:languages,id',
+            'quality_id' => 'required|exists:qualities,id',
         ];
     }
 }

@@ -19,11 +19,29 @@ class Series extends Model
     ];
 
     /**
-     * Get the product info of movie
+     * Get the product info of series
      *
      */
     public function product()
     {
     	return $this->belongsTo('App\Product');
+    }
+
+    /**
+     * Get the language of series
+     *
+     */
+    public function language()
+    {
+        return $this->belongsTo('App\Language');
+    }
+
+    /**
+     * Get the quality of series
+     *
+     */
+    public function quality()
+    {
+        return $this->belongsTo('App\Quality');
     }
 }

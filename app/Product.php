@@ -17,9 +17,9 @@ class Product extends Model
      * Get the movies info of movie
      *
      */
-    public function movies()
+    public function movie()
     {
-    	return $this->hasMany('App\Movie');
+    	return $this->hasOne('App\Movie', 'product_id');
     }
 
     /**
@@ -28,6 +28,6 @@ class Product extends Model
      */
     public function series()
     {
-        return $this->hasMany('App\Series');
+        return $this->hasOne('App\Series', 'product_id');
     }
 }
