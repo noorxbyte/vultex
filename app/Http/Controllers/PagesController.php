@@ -20,9 +20,6 @@ class PagesController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = Product::where('type', 'MOVIE');
-        $series = Product::where('type', 'SERIES');
-
         $title = "Welcome";
         $heading = "Welcome";
 
@@ -32,20 +29,26 @@ class PagesController extends Controller
             $title = "Search Database";
             $heading = "Search: '$request->q'";
 
-            $movies = $movies
-                ->where('name', 'LIKE', '%' . $request->q . '%')
-                ->orWhere('description', 'LIKE', "%$request->q%")
-                ->with('movie')->get();
+            $movies = Product::where('type', 'MOVIE')
+                ->where(function($query) use ($request) {
+                    $query->where('name', 'LIKE', "%$request->q%")
+                        ->orWhere('description', 'LIKE', "%$request->q%");
+                })
+                ->with('movie')
+                ->get();
 
-            $series = $series
-                ->where('name', 'LIKE', '%' . $request->q . '%')
-                ->orWhere('description', 'LIKE', "%$request->q%")
-                ->with('series')->get();
+            $series = Product::where('type', 'SERIES')
+                ->where(function($query) use ($request) {
+                    $query->where('name', 'LIKE', "%$request->q%")
+                        ->orWhere('description', 'LIKE', "%$request->q%");
+                })
+                ->with('series')
+                ->get();
         }
         else
         {
-            $movies = $movies->with('movie')->get();
-            $series = $series->with('series')->get();
+            $movies = Product::where('type', 'MOVIE')->with('movie')->get();
+            $series = Product::where('type', 'SERIES')->with('series')->get();
         }
 
         $request->flash();
