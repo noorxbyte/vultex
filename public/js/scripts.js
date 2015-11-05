@@ -38,20 +38,6 @@ $(document).ready(function() {
 		$('#delConfirm').modal('show');
 	});
 
-	/*
-	 * Set active tab in user settings on redirect
-	 */
-	var hash = $('#active_id').val();
-	if(hash)
-	{
-		var obj = $('.nav-tabs a[href="' + hash + '"]');
-        obj.tab('show');
-    }
-    else
-    {
-    	$('.nav-tabs a[href="#summary"]').tab('show');
-    }
-
     /*
      * Dropdown on hover
      */
@@ -67,28 +53,13 @@ $(document).ready(function() {
 	});
 
 	/*
-	 * Follow link when account's clicked
-	 */
-	$('#accounts').click(function() {
-		window.location = $('#accounts').attr('href');
-	});
-
-	/*
-	 * Submit validate form
-	 */
-	$('#validateSubmit').click(function(event) {
-		event.preventDefault();
-		$('#validateForm').submit();
-	});
-
-	/*
 	 * Highlight search results
 	 */
 	if ($('#search').length)
 	{
 		if ($('#search').val().length > 0)
 		{
-			$('.comment').each(function(i, obj) {
+			$('.highlightable').each(function(i, obj) {
 				var searchRegex = new RegExp('(' + $('#search').val() + ')', "ig");
 				$(obj).html($(obj).html().replace(searchRegex, '<span class="highlight">$1</span>'));
 			});

@@ -14,12 +14,12 @@
 		<tbody>
 			@foreach($series as $series)
 				<tr>
-					<td class="col-sm-2">{{ $series->name }}</td>
+					<td class="col-sm-2 highlightable">{{ $series->name }}</td>
 					<td class="col-sm-1"><a href="http://www.imdb.com/title/{{ $series->series->imdb }}/" target="_blank">{{ $series->series->imdb }}</a></td>
 					<td class="col-sm-2">{{ $series->series->release_year }}</td>
 					<td class="col-sm-1">{{ $series->series->language->language }}</td>
 					<td class="col-sm-1">{{ $series->series->quality->quality }}</td>
-					<td class="col-sm-4">{{ $series->description }}</td>
+					<td class="col-sm-4 highlightable">{{ $series->description }}</td>
 					<td class="col-sm-1">${{ number_format($series->price, 2) }}</td>
 				</tr>
 			@endforeach

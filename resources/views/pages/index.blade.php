@@ -16,7 +16,7 @@
 		<span class="pull-right">
 			{!! Form::open(['action' => 'PagesController@index', 'method' => 'GET', 'class' => 'form-inline']) !!}
 				<div class="form-group">
-					{!! Form::input('search', 'q', null, ['class' => 'form-control', 'placeholder' => 'Search Our Database']) !!}
+					{!! Form::input('search', 'q', null, ['id' => 'search', 'class' => 'form-control', 'placeholder' => 'Search Our Database']) !!}
 				</div>
 				<div class="form-group">
 					{!! Form::submit('Search', ['class' => 'btn btn-default']) !!}
