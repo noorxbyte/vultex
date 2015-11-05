@@ -18,7 +18,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label">Language</label>
         <div class="col-md-4">
-            {!! Form::select('language_id', ['0' => '-- Language --'] + $languages, null, ['class' => 'form-control']) !!}
+            {!! Form::select('language_id', $languages, null, ['class' => 'form-control']) !!}
         </div>
 </div>
 
