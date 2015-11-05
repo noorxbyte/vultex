@@ -23,32 +23,21 @@ class PagesController extends Controller
         $title = "Welcome";
         $heading = "Welcome";
 
+        $movies = Product::where('type', 'MOVIE');
+        $series = Product::where('type', 'SERIES');
+
         // query
         if (!empty($request->q))
         {
             $title = "Search Database";
             $heading = "Search: '$request->q'";
 
-            $movies = Product::where('type', 'MOVIE')
-                ->where(function($query) use ($request) {
-                    $query->where('name', 'LIKE', "%$request->q%")
-                        ->orWhere('description', 'LIKE', "%$request->q%");
-                })
-                ->with('movie')
-                ->get();
-
-            $series = Product::where('type', 'SERIES')
-                ->where(function($query) use ($request) {
-                    $query->where('name', 'LIKE', "%$request->q%")
-                        ->orWhere('description', 'LIKE', "%$request->q%");
-                })
-                ->with('series')
-                ->get();
+            $movies = $movies->where('name', 'LIKE', "%$request->q%");
+            $series = $series->where('name', 'LIKE', "%$request->q%");
         }
         else
         {
-            $movies = Product::where('type', 'MOVIE')->with('movie')->get();
-            $series = Product::where('type', 'SERIES')->with('series')->get();
+            
         }
 
         $request->flash();
@@ -56,7 +45,7 @@ class PagesController extends Controller
         return view('pages.index')
             ->with('title', $title)
             ->with('heading', $heading)
-            ->with('movies', $movies)
-            ->with('series', $series);
+            ->with('movies', $movies->with('movie')->get())
+            ->with('series', $series->with('series')->get());
     }
 }
