@@ -45,7 +45,7 @@ class PagesController extends Controller
         return view('pages.index')
             ->with('title', $title)
             ->with('heading', $heading)
-            ->with('movies', $movies->with('movie')->get())
-            ->with('series', $series->with('series')->get());
+            ->with('movies', $movies->with('movie')->orderBy('updated_at', 'DESC')->get())
+            ->with('series', $series->with('series')->orderBy('updated_at', 'DESC')->get());
     }
 }
