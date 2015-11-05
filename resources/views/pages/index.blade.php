@@ -19,7 +19,7 @@
 					{!! Form::input('search', 'q', null, ['class' => 'form-control', 'placeholder' => 'Search Our Database']) !!}
 				</div>
 				<div class="form-group">
-					{!! Form::button('Search', ['class' => 'btn btn-default']) !!}
+					{!! Form::submit('Search', ['class' => 'btn btn-default']) !!}
 				</div>
 			{!! Form::close() !!}
 		</span>
