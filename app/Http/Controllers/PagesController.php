@@ -20,8 +20,8 @@ class PagesController extends Controller
      */
     public function index(Request $request)
     {
-        $movies = Product::where('type', 'MOVIE')->with('movie');
-        $series = Product::where('type', 'SERIES')->with('series');
+        $movies = Product::where('type', 'MOVIE');
+        $series = Product::where('type', 'SERIES');
 
         $title = "Welcome";
         $heading = "Welcome";
@@ -35,17 +35,17 @@ class PagesController extends Controller
             $movies = $movies
                 ->where('name', 'LIKE', '%' . $request->q . '%')
                 ->orWhere('description', 'LIKE', '%' . $request->q . '%')
-                ->get();
+                ->with('movie')->get();
 
             $series = $series
                 ->where('name', 'LIKE', '%' . $request->q . '%')
                 ->orWhere('description', 'LIKE', '%' . $request->q . '%')
-                ->get();
+                ->with('series')->get();
         }
         else
         {
-            $movies = $movies->get();
-            $series = $series->get();
+            $movies = $movies->with('movie')->get();
+            $series = $series->with('series')->get();
         }
 
         $request->flash();
