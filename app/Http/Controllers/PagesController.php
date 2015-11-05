@@ -34,12 +34,12 @@ class PagesController extends Controller
 
             $movies = $movies
                 ->where('name', 'LIKE', '%' . $request->q . '%')
-                ->orWhere('description', 'LIKE', '%' . $request->q . '%')
+                ->orWhere('description', 'LIKE', "%$request->q%")
                 ->with('movie')->get();
 
             $series = $series
                 ->where('name', 'LIKE', '%' . $request->q . '%')
-                ->orWhere('description', 'LIKE', '%' . $request->q . '%')
+                ->orWhere('description', 'LIKE', "%$request->q%")
                 ->with('series')->get();
         }
         else
