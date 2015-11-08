@@ -15,7 +15,8 @@ class CreateMoviesTable extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->string('imdb', 16)->unique();
+            $table->primary('product_id');
+            $table->string('imdb', 16)->nullable();
             $table->smallInteger('release_year')->unsigned();
             $table->integer('language_id')->unsigned();
             $table->foreign('language_id')->references('id')->on('languages');

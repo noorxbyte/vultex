@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-use Auth;
-
-class StoreProductRequest extends Request
+class UpdateMovieRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +24,10 @@ class StoreProductRequest extends Request
     public function rules()
     {
         return [
-            'active' => 'required|boolean',
-            'type' => 'required|in:MOVIE,SERIES',
-            'name' => 'required|max:255',
-            'description' => 'required',
-            'price' => 'required|numeric|min:0.01|regex:/^\d*(\.\d{2})?$/',
+            'imdb' => 'required|max:16|unique:movies',
+            'release_year' => 'required|integer',
+            'language_id' => 'required|exists:languages,id',
+            'quality_id' => 'required|exists:qualities,id',
         ];
     }
 }

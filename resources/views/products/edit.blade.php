@@ -4,8 +4,8 @@
 
 @section('content')
 
-	{!! Form::model($language, ['action' => ['LanguagesController@update', $language->id], 'method' => 'PUT', 'class' => 'form-inline']) !!}
-		@include('languages._form', ['submitBtnText' => 'Edit'])
+	{!! Form::model($product, ['action' => ['ProductsController@update', $product->id], 'method' => 'PUT', 'class' => 'form-horizontal']) !!}
+		@include('products._form', ['submitBtnText' => 'Update', 'subFrm' => $type, 'product' => $product])
 	{!! Form::close() !!}
 
 @stop

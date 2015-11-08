@@ -35,10 +35,6 @@ class PagesController extends Controller
             $movies = $movies->where('name', 'LIKE', "%$request->q%");
             $series = $series->where('name', 'LIKE', "%$request->q%");
         }
-        else
-        {
-            
-        }
 
         $request->flash();
 

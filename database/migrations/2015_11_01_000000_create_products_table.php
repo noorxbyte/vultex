@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->enum('type', ['MOVIE', 'SERIES', 'SOFTWARE', 'OTHER']);
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 65, 4)->unsigned();
+            $table->decimal('price', 65, 2)->unsigned();
             $table->timestamps();
         });
     }

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
+    protected $primaryKey = 'product_id';
+
     /**
      * The attributes that are mass assignable.
      *

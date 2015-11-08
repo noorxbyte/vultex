@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests\StoreSeriesRequest;
+use App\Http\Requests\UpdateMovieRequest;
+use App\Http\Requests\UpdateSeriesRequest;
 use App\Http\Controllers\Controller;
 
 use App\Product;
@@ -117,7 +119,26 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+
+        switch($product->type)
+        {
+            case "MOVIE":
+                $product = Product::with('movie')->find($id);
+                break;
+
+            case "SERIES":
+                $product = Product::with('series')->find($id);
+                break;
+        }
+
+        $type = strtolower($product->type);
+
+        return view('products.edit')
+            ->with('title', 'Edit Product')
+            ->with('heading', 'Edit Product')
+            ->with('product', $product)
+            ->with('type', $type);
     }
 
     /**
@@ -127,9 +148,38 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, $id)
     {
-        //
+        // validate request further according to type
+        switch ($request->type)
+        {
+            case 'MOVIE':
+                $movRequest = new UpdateMovieRequest;
+                $request->merge($request->movie);
+                $this->validate($request, $movRequest->rules());
+                $info = Movie::find($id)->first();
+                break;
+            case 'SERIES':
+                $tvRequest = new UpdateSeriesRequest;
+                $request->merge($request->series);
+                $this->validate($request, $tvRequest->rules());
+                $info = Series::find($id)->first();
+                break;
+        }
+
+        // use database transaction to save the records
+        DB::transaction(function () use ($info, $request, $id) {
+            // save the product record
+            Product::find($id)->update($request->all());
+
+            // save the details record
+            $info->update($request->all());
+        });
+
+        // flash message
+        session()->flash('flash_message', 'Product updated successfully.');
+
+        return redirect()->route('home');
     }
 
     /**

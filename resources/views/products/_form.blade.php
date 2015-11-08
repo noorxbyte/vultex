@@ -19,7 +19,7 @@
         </div>
 </div>
 
-@include('products.__' . $type)
+@include("products.__$type")
 
 <div class="form-group">
     <label class="col-md-4 control-label">{{ $description or 'Description' }}</label>

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Series extends Model
 {
+    protected $primaryKey = 'product_id';
+    
     /**
      * The attributes that are mass assignable.
      *
