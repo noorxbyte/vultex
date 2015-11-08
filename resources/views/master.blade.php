@@ -47,6 +47,8 @@
             <!-- Navigation Bar -->
             @if(Auth::check())
                 @include('_navbar')
+            @else
+                <div class="bottom"><a class="invisible" id="login" href="{{ route('login') }}">Login</a></div>
             @endif
 
         </div>

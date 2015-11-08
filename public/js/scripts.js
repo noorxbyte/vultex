@@ -18,6 +18,15 @@ $(document).ready(function() {
 		$('#dpicker').val(currentDate);
 	}
 
+	/**
+	 * Display login link on hover
+	 */
+	$('.bottom').hover(function () {
+		$('#login').css('visibility', 'visible');
+	}, function () {
+		$('#login').css('visibility', 'hidden');
+	});
+
 	/*
 	 * Slide up flash message after 3 seconds
 	 */
