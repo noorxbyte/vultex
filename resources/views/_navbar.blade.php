@@ -23,6 +23,8 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('products.create') . '?type=movie' }}">Movie</a></li>
                         <li><a href="{{ route('products.create') . '?type=series' }}">Series</a></li>
+                        <li><a href="{{ route('products.create') . '?type=anime' }}">Anime</a></li>
+                        <li><a href="{{ route('products.create') . '?type=video' }}">Video</a></li>
                     </ul>
                 </li>
 
