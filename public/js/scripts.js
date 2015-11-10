@@ -108,10 +108,18 @@ function getHTTP(url)
 	$.get(url, function(data, status){
 		data = JSON.stringify(data);
 		var obj = jQuery.parseJSON(data);
-		$('#imdb').val(obj.imdbID);
-		$('#title').val(obj.Title);
-		$('#release_year').val(obj.Year);
-		$('#plot').val(obj.Plot);
-		document.getElementById("check").setAttribute("href", "http://www.imdb.com/title/" + obj.imdbID + "/");
+		if ((obj.Type.toUpperCase() === $('#type').val().toUpperCase()) || ($('#type').val().toUpperCase() === "ANIME"))
+		{
+			$('#imdb').val(obj.imdbID);
+			$('#title').val(obj.Title);
+			$('#release_year').val(obj.Year);
+			$('#plot').val(obj.Plot);
+			$('#genre').val(obj.Genre);
+			document.getElementById("check").setAttribute("href", "http://www.imdb.com/title/" + obj.imdbID + "/");
+		}
+		else
+		{
+			$('#imdb, #release_year, #plot, #genre').val("");
+		}
     });
 }

@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Video extends Model
 {
     protected $primaryKey = 'product_id';
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -16,12 +16,13 @@ class Movie extends Model
     protected $fillable = [
         'imdb', 
         'release_year', 
+        'genre', 
         'language_id', 
         'quality_id'
     ];
 
     /**
-     * Get the product info of movie
+     * Get the product info of series
      *
      */
     public function product()
@@ -30,7 +31,7 @@ class Movie extends Model
     }
 
     /**
-     * Get the language of movie
+     * Get the language of series
      *
      */
     public function language()
@@ -39,7 +40,7 @@ class Movie extends Model
     }
 
     /**
-     * Get the quality of movie
+     * Get the quality of series
      *
      */
     public function quality()

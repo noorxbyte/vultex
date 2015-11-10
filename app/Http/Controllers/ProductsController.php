@@ -6,15 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\StoreMovieRequest;
-use App\Http\Requests\StoreSeriesRequest;
-use App\Http\Requests\UpdateMovieRequest;
-use App\Http\Requests\UpdateSeriesRequest;
+use App\Http\Requests\StoreVideoRequest;
 use App\Http\Controllers\Controller;
 
 use App\Product;
-use App\Series;
-use App\Movie;
+use App\Video;
 
 use DB;
 
@@ -37,23 +33,24 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
-        if (empty($request->type) || !in_array($request->type, ['movie', 'series']))
+        if (empty($request->type) || !in_array($request->type, ['movie', 'series', 'anime', 'video']))
             return redirect()->route('products.index');
 
-        $type = $request->type;
+        $vid_type = $request->type;
         $title = $heading = 'New ' . ucfirst($request->type);
         switch ($request->type)
         {
             case 'movie':
-                $name = $namePlaceHolder = ucfirst($request->type) . ' Title';
-                $description = 'Plot';
-
             case 'series':
+            case 'anime':
+            case 'video':
                 $name = $namePlaceHolder = ucfirst($request->type) . ' Title';
                 $description = 'Plot';
+                $type = 'video';
+                break;
         }
 
-        return view('products.create', compact('title', 'heading', 'type', 'name', 'namePlaceHolder', 'description'));
+        return view('products.create', compact('title', 'heading', 'vid_type', 'type', 'name', 'namePlaceHolder', 'description'));
     }
 
     /**
@@ -68,14 +65,12 @@ class ProductsController extends Controller
         switch ($request->type)
         {
             case 'MOVIE':
-                $movRequest = new StoreMovieRequest;
-                $this->validate($request, $movRequest->rules());
-                $info = new Movie($request->all());
-                break;
             case 'SERIES':
-                $tvRequest = new StoreSeriesRequest;
-                $this->validate($request, $tvRequest->rules());
-                $info = new Series($request->all());
+            case 'ANIME':
+            case 'VIDEO':
+                $valRequest = new StoreVideoRequest;
+                $this->validate($request, $valRequest->rules());
+                $info = new Video($request->all());
                 break;
         }
 
@@ -119,26 +114,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
-
-        switch($product->type)
-        {
-            case "MOVIE":
-                $product = Product::with('movie')->find($id);
-                break;
-
-            case "SERIES":
-                $product = Product::with('series')->find($id);
-                break;
-        }
-
-        $type = strtolower($product->type);
-
-        return view('products.edit')
-            ->with('title', 'Edit Product')
-            ->with('heading', 'Edit Product')
-            ->with('product', $product)
-            ->with('type', $type);
+        //
     }
 
     /**
@@ -150,36 +126,7 @@ class ProductsController extends Controller
      */
     public function update(StoreProductRequest $request, $id)
     {
-        // validate request further according to type
-        switch ($request->type)
-        {
-            case 'MOVIE':
-                $movRequest = new UpdateMovieRequest;
-                $request->merge($request->movie);
-                $this->validate($request, $movRequest->rules());
-                $info = Movie::find($id)->first();
-                break;
-            case 'SERIES':
-                $tvRequest = new UpdateSeriesRequest;
-                $request->merge($request->series);
-                $this->validate($request, $tvRequest->rules());
-                $info = Series::find($id)->first();
-                break;
-        }
-
-        // use database transaction to save the records
-        DB::transaction(function () use ($info, $request, $id) {
-            // save the product record
-            Product::find($id)->update($request->all());
-
-            // save the details record
-            $info->update($request->all());
-        });
-
-        // flash message
-        session()->flash('flash_message', 'Product updated successfully.');
-
-        return redirect()->route('home');
+        //
     }
 
     /**

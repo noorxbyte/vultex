@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-use Auth;
-
-class StoreMovieRequest extends Request
+class StoreVideoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +13,7 @@ class StoreMovieRequest extends Request
      */
     public function authorize()
     {
-        return Auth::check();
+        return false;
     }
 
     /**
@@ -26,10 +24,11 @@ class StoreMovieRequest extends Request
     public function rules()
     {
         return [
-            'imdb' => 'required|max:16|unique:movies',
-            'release_year' => 'required|integer',
-            'language_id' => 'required|exists:languages,id',
-            'quality_id' => 'required|exists:qualities,id',
+            'imdb' => 'unique:videos',
+            'release_year' => 'required',
+            'genre' => 'required',
+            'language_id' => 'exists:languages,id',
+            'quality_id' => 'exists:qualities,id',
         ];
     }
 }

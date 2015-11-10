@@ -9,6 +9,7 @@
 			<th>Title</th>
 			<th>IMDB</th>
 			<th>Year</th>
+			<th>Genre</th>
 			<th>Language</th>
 			<th>Quality</th>
 			<th>Plot</th>
@@ -23,18 +24,19 @@
 								<button class="btn btn-default dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Actions
 								<span class="caret"></span></button>
 								<ul class="dropdown-menu">
-									<li><a href="{{ route('products.edit', $movie['id']) }}">Edit</a></li>
+									<li><a href="#">Edit</a></li>
 									<li><a href="#" class="btn-del">Delete</a></li>
 								</ul>
 							</div>
 						</td>
 					@endif
 					<td class="col-sm-2 highlightable">{{ $movie->name }}</td>
-					<td class="col-sm-1"><a href="http://www.imdb.com/title/{{ $movie->movie->imdb }}/" target="_blank">{{ $movie->movie->imdb }}</a></td>
-					<td class="col-sm-1">{{ $movie->movie->release_year }}</td>
-					<td class="col-sm-1">{{ $movie->movie->language->language }}</td>
-					<td class="col-sm-1">{{ $movie->movie->quality->quality }}</td>
-					<td class="col-sm-{{ Auth::check()?4:5 }} highlightable">{{ $movie->description }}</td>
+					<td class="col-sm-1"><a href="http://www.imdb.com/title/{{ $movie->video->imdb }}/" target="_blank">{{ $movie->video->imdb }}</a></td>
+					<td class="col-sm-1">{{ $movie->video->release_year }}</td>
+					<td class="col-sm-2">{{ $movie->video->genre }}</td>
+					<td class="col-sm-1">{{ $movie->video->language->language }}</td>
+					<td class="col-sm-1">{{ $movie->video->quality->quality }}</td>
+					<td class="col-sm-{{ Auth::check()?2:3 }}">{{ $movie->description }}</td>
 					<td class="col-sm-1">${{ number_format($movie->price, 2) }}</td>
 				</tr>
 			@endforeach

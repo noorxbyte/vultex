@@ -27,7 +27,7 @@ class StoreProductRequest extends Request
     {
         return [
             'active' => 'required|boolean',
-            'type' => 'required|in:MOVIE,SERIES',
+            'type' => 'required|in:MOVIE,SERIES,ANIME,VIDEO',
             'name' => 'required|max:255',
             'description' => 'required',
             'price' => 'required|numeric|min:0.01|regex:/^\d*(\.\d{2})?$/',

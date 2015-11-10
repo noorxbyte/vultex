@@ -14,20 +14,11 @@ class Product extends Model
     protected $fillable = ['active', 'type', 'name', 'description', 'price'];
 
     /**
-     * Get the movies info of movie
+     * Get the video
      *
      */
-    public function movie()
+    public function video()
     {
-    	return $this->hasOne('App\Movie', 'product_id');
-    }
-
-    /**
-     * Get the series info of movie
-     *
-     */
-    public function series()
-    {
-        return $this->hasOne('App\Series', 'product_id');
+    	return $this->hasOne('App\Video', 'product_id');
     }
 }

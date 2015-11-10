@@ -40,5 +40,15 @@
 			@include('pages._series', ['series' => $series])
 		</div>
 
+		<div id="animeToggle" class="toggle"><h4>Anime</h4></div>
+		<div id="animeData" class="panel"><br>
+			@include('pages._anime', ['anime' => $anime])
+		</div>
+
+		<div id="videoToggle" class="toggle"><h4>Video</h4></div>
+		<div id="videoData" class="panel"><br>
+			@include('pages._video', ['video' => $video])
+		</div>
+
 	</div>
 @stop

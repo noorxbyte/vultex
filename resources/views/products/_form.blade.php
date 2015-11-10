@@ -10,12 +10,12 @@
     </div>
 @endif
 
-{!! Form::input('hidden', 'type', isset($type)?strtoupper($type):null) !!}
+{!! Form::input('hidden', 'type', isset($vid_type)?strtoupper($vid_type):null, ['id' => 'type']) !!}
 
 <div class="form-group">
     <label class="col-md-4 control-label">{{ $name or 'Product Name' }}</label>
         <div class="col-md-4">
-            {!! Form::text('name', null, ['id' => ($type == 'movie' || $type == 'series')?'title':'name', 'class' => 'form-control', 'placeholder' => isset($namePlaceHolder)?$namePlaceHolder:'Product Name', 'onchange' => 'getIMDBByTitle()', 'required', 'autofocus']) !!}
+            {!! Form::text('name', null, ['id' => ($type == 'video')?'title':'name', 'class' => 'form-control', 'placeholder' => isset($namePlaceHolder)?$namePlaceHolder:'Product Name', 'onchange' => 'getIMDBByTitle()', 'required', 'autofocus']) !!}
         </div>
 </div>
 
@@ -24,7 +24,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label">{{ $description or 'Description' }}</label>
     <div class="col-md-4">
-        {!! Form::textarea('description', null, ['id' => ($type == 'movie' || $type == 'series')?'plot':'description', 'class' => 'form-control', 'rows' => 5]) !!}
+        {!! Form::textarea('description', null, ['id' => ($type == 'video')?'plot':'description', 'class' => 'form-control', 'rows' => 5]) !!}
     </div>
 </div>
 
