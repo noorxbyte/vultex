@@ -108,7 +108,7 @@ function getHTTP(url)
 	$.get(url, function(data, status){
 		data = JSON.stringify(data);
 		var obj = jQuery.parseJSON(data);
-		if ((obj.Type.toUpperCase() === $('#type').val().toUpperCase()) || ($('#type').val().toUpperCase() === "ANIME"))
+		if ((obj.Type.toUpperCase() === $('#type').val().toUpperCase()) || ($('#type').val().toUpperCase() === "ANIME") || ($('#type').val().toUpperCase() === "VIDEO"))
 		{
 			$('#imdb').val(obj.imdbID);
 			$('#title').val(obj.Title);
