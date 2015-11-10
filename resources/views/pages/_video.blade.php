@@ -37,7 +37,7 @@
 					<td class="col-sm-1">{{ $video->video->language->language }}</td>
 					<td class="col-sm-1">{{ $video->video->quality->quality }}</td>
 					<td class="col-sm-{{ Auth::check()?2:3 }} highlightable">{{ $video->description }}</td>
-					<td class="col-sm-1">${{ number_format($video->price, 2) }}</td>
+					<td class="col-sm-1">MVR {{ number_format($video->price, 2) }}</td>
 				</tr>
 			@endforeach
 		</tbody>
