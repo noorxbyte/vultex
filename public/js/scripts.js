@@ -92,17 +92,19 @@ $(document).ready(function() {
 	 */
 	$('.imdb').hover(function() {
 		var blah = ($(this).attr('id').split("-"))[1];
-		$("#img-" + blah).fadeIn('fast');
+		var timeout = setTimeout(function() {
+			$("#panel-" + blah).fadeIn('fast');
+		}, 500);
 	}, function() {
 		var blah = ($(this).attr('id').split("-"))[1];
 		var timeout = setTimeout(function() {
-			$("#img-" + blah).fadeOut('fast');
+			$("#panel-" + blah).fadeOut('fast');
 		}, 500);
 
 		$('.poster').hover(function() {
 			clearTimeout(timeout);
 		}, function() {
-			$("#img-" + blah).fadeOut('slow');
+			$("#panel-" + blah).fadeOut('slow');
 		});
 	});
 

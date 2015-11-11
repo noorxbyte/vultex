@@ -31,17 +31,17 @@
 
 		<!-- display movie list -->
 		<div id="moviesToggle" class="toggle"><h4>Movies</h4></div>
-		<div id="moviesData" class="panel"><br>
+		<div id="moviesData" class="slider-panel"><br>
 			@include('pages._video', ['records' => $movies])
 		</div>
 
 		<div id="seriesToggle" class="toggle"><h4>Series</h4></div>
-		<div id="seriesData" class="panel"><br>
+		<div id="seriesData" class="slider-panel"><br>
 			@include('pages._video', ['records' => $series])
 		</div>
 
 		<div id="animeToggle" class="toggle"><h4>Anime</h4></div>
-		<div id="animeData" class="panel"><br>
+		<div id="animeData" class="slider-panel"><br>
 			@include('pages._video', ['records' => $anime])
 		</div>
 

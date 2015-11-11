@@ -17,12 +17,7 @@
     visibility: hidden;
 }
 
-.img-hidden
-{
-    display: none;
-}
-
-.panel
+.slider-panel, .poster
 {
     display: none;
 }

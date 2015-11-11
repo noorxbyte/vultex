@@ -48,12 +48,10 @@
 					<td class="col-sm-1">MVR {{ number_format($record->price, 2) }}</td>
 				</tr>
 				<tr>
-					<td colspan="9" class="text-center">
-						<div id="panel-{{ $record->id }}" class="poster">
-							<a href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
-								<img id="img-{{ $record->id }}" src="{{ $record->video->poster }}" alt="Poster Image" class="img-responsive img-thumbnail" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
-							</a>
-						</div>
+					<td colspan="{{ Auth::check()?9:8 }}" class="text-center">
+						<a id="imdb-{{ $record->id }}" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+							<img id="img-{{ $record->id }}" src="{{ $record->video->poster }}" alt="Poster Image" class="img-responsive img-thumbnail img-hidden poster" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+						</a>
 					</td>
 				</tr>
 			@endforeach
