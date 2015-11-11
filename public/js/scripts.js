@@ -95,7 +95,7 @@ $(document).ready(function() {
 	$('.imdb').mouseenter(function() {
 		var blah = ($(this).attr('id').split("-"))[1];
 		show_timer = setTimeout(function() {
-			$("#panel-" + blah).fadeIn('fast');
+			$("#panel-" + blah).slideDown('slow');
 		}, 500);
 	});
 
@@ -103,7 +103,7 @@ $(document).ready(function() {
 		clearTimeout(show_timer);
 		var blah = ($(this).attr('id').split("-"))[1];
 		hide_timer = setTimeout(function() {
-			$("#panel-" + blah).fadeOut('fast');
+			$("#panel-" + blah).slideUp('slow');
 		}, 500);
 	});
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
 	});
 
 	$('.poster').mouseleave(function() {
-		$(this).fadeOut('slow');
+		$(this).slideUp('slow');
 	});
 
 });
