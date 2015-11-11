@@ -48,11 +48,17 @@
 					<td class="col-sm-1">MVR {{ number_format($record->price, 2) }}</td>
 				</tr>
 				<tr>
-					<td colspan="9" class="text-center">
+					<td colspan="9">
 						<div id="panel-{{ $record->id }}" class="poster">
-							<a href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
-								<img id="img-{{ $record->id }}" src="{{ $record->video->poster }}" alt="Poster Image" class="img-responsive img-thumbnail" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+							<span class="col-sm-3"></span>
+
+							<a href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank" class="col-sm-3">
+								<img id="img-{{ $record->id }}" src="{{ $record->video->poster }}" alt="Poster Image" class="img-responsive img-thumbnail img-poster" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
 							</a>
+
+							<span class="col-sm-3 plot">{{ $record->description }}</span>
+
+							<span class="col-sm-3"></span>
 						</div>
 					</td>
 				</tr>

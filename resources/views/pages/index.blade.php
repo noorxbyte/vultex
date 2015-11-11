@@ -46,7 +46,7 @@
 		</div>
 
 		<div id="videoToggle" class="toggle"><h4>Video</h4></div>
-		<div id="videoData" class="panel"><br>
+		<div id="videoData" class="slider-panel"><br>
 			@include('pages._video', ['records' => $video])
 		</div>
 
