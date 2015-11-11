@@ -10,6 +10,7 @@ use App\Http\Requests\StoreVideoRequest;
 use App\Http\Controllers\Controller;
 
 use App\Product;
+use App\Genre;
 use App\Video;
 
 use DB;
@@ -74,11 +75,16 @@ class ProductsController extends Controller
                 break;
         }
 
+        // get the genres
+        $genres = str_getcsv($request->genre);
+        foreach ($genres as $key => $genre)
+            $genres[$key] = trim($genre);
+
         // create product record
         $product = Product::create($request->all());
 
         // use database transaction to save the records
-        DB::transaction(function () use ($product, $info) {
+        DB::transaction(function () use ($product, $info, $genres) {
             // save the product record
             $product->save();
 
@@ -87,6 +93,22 @@ class ProductsController extends Controller
 
             // save the details record
             $info->save();
+
+            // add the genres
+            foreach($genres as $genre)
+            {
+                // if genre does not exist create it
+                $record = Genre::where('name', $genre)->first();
+                if ($record === null)
+                {
+                    $record = Genre::create(['name' => $genre]);
+                    $product->genres()->attach([$record->id]);
+                }
+                else
+                {
+                    $product->genres()->attach([$record->id]);
+                }
+            }
         });
 
         // flash message

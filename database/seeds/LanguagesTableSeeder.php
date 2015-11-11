@@ -15,9 +15,9 @@ class LanguagesTableSeeder extends Seeder
         DB::table('languages')->delete();
  
         $languages = array(
-            ['id' => 1, 'language' => 'English', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id' => 2, 'language' => 'Korean', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id' => 3, 'language' => 'French', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 1, 'name' => 'English', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 2, 'name' => 'Korean', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 3, 'name' => 'French', 'created_at' => new DateTime, 'updated_at' => new DateTime],
         );
  
         // Uncomment the below to run the seeder

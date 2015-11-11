@@ -16,6 +16,7 @@ class CreateVideosTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->primary('product_id');
+            $table->string('poster')->nullable();
             $table->string('imdb', 16)->nullable();
             $table->string('release_year');
             $table->string('genre')->nullable();

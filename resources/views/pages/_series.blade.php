@@ -34,8 +34,8 @@
 					<td class="col-sm-1"><a href="http://www.imdb.com/title/{{ $series->video->imdb }}/" target="_blank">{{ $series->video->imdb }}</a></td>
 					<td class="col-sm-1">{{ $series->video->release_year }}</td>
 					<td class="col-sm-2">{{ $series->video->genre }}</td>
-					<td class="col-sm-1">{{ $series->video->language->language }}</td>
-					<td class="col-sm-1">{{ $series->video->quality->quality }}</td>
+					<td class="col-sm-1">{{ $series->video->language->name }}</td>
+					<td class="col-sm-1">{{ $series->video->quality->name }}</td>
 					<td class="col-sm-{{ Auth::check()?2:3 }} highlightable">{{ $series->description }}</td>
 					<td class="col-sm-1">MVR {{ number_format($series->price, 2) }}</td>
 				</tr>

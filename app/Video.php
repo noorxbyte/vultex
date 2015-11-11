@@ -14,6 +14,7 @@ class Video extends Model
      * @var array
      */
     protected $fillable = [
+        'poster',
         'imdb', 
         'release_year', 
         'genre', 

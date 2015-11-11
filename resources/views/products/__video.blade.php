@@ -4,7 +4,15 @@
     <label class="col-md-4 control-label">IMDB ID</label>
         <div class="col-md-4">
             {!! Form::text(isset($product)?'video[imdb]':'imdb', null, ['id' => 'imdb', 'class' => 'form-control', 'placeholder' => 'IMDB ID', 'onchange' => 'getIMDBByID()', 'required']) !!}
-            <span class="small"><a href="#" target="_blank" id="check">Check</a></span>
+            <span class="small"><a href="#" target="_blank" id="check_imdb">Check</a></span>
+        </div>
+</div>
+
+<div class="form-group">
+    <label class="col-md-4 control-label">Poster</label>
+        <div class="col-md-4">
+            {!! Form::text(isset($product)?'video[poster]':'poster', null, ['id' => 'poster', 'class' => 'form-control', 'placeholder' => 'Poster Image URL']) !!}
+            <span class="small"><a href="#" target="_blank" id="check_poster">Check</a></span>
         </div>
 </div>
 

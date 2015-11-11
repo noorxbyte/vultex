@@ -111,11 +111,13 @@ function getHTTP(url)
 		if ((obj.Type.toUpperCase() === $('#type').val().toUpperCase()) || ($('#type').val().toUpperCase() === "ANIME") || ($('#type').val().toUpperCase() === "VIDEO"))
 		{
 			$('#imdb').val(obj.imdbID);
+			$('#poster').val(obj.Poster);
 			$('#title').val(obj.Title);
 			$('#release_year').val(obj.Year);
 			$('#plot').val(obj.Plot);
 			$('#genre').val(obj.Genre);
-			document.getElementById("check").setAttribute("href", "http://www.imdb.com/title/" + obj.imdbID + "/");
+			$('#check_imdb').attr('href', "http://www.imdb.com/title/" + obj.imdbID + "/");
+			$('#check_poster').attr('href', obj.Poster);
 		}
 		else
 		{

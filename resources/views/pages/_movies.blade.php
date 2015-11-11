@@ -33,9 +33,17 @@
 					<td class="col-sm-2 highlightable">{{ $movie->name }}</td>
 					<td class="col-sm-1"><a href="http://www.imdb.com/title/{{ $movie->video->imdb }}/" target="_blank">{{ $movie->video->imdb }}</a></td>
 					<td class="col-sm-1">{{ $movie->video->release_year }}</td>
-					<td class="col-sm-2">{{ $movie->video->genre }}</td>
-					<td class="col-sm-1">{{ $movie->video->language->language }}</td>
-					<td class="col-sm-1">{{ $movie->video->quality->quality }}</td>
+					<td class="col-sm-2">
+						@foreach($movie->genres as $key => $genre)
+							@if($key == (count($movie->genres) - 1))
+								{{ $genre->name }}
+							@else
+								{{ $genre->name . ', ' }}
+							@endif
+						@endforeach
+					</td>
+					<td class="col-sm-1">{{ $movie->video->language->name }}</td>
+					<td class="col-sm-1">{{ $movie->video->quality->name }}</td>
 					<td class="col-sm-{{ Auth::check()?2:3 }}">{{ $movie->description }}</td>
 					<td class="col-sm-1">MVR {{ number_format($movie->price, 2) }}</td>
 				</tr>

@@ -64,8 +64,8 @@ View::composer('auth.register', function($view) {
 // pass language and quality list into movie page
 View::composer('products.__video', function($view) {
 	// get data
-	$languages = App\Language::lists('language', 'id')->toArray();
-	$qualities = App\Quality::lists('quality', 'id')->toArray();
+	$languages = App\Language::lists('name', 'id')->toArray();
+	$qualities = App\Quality::lists('name', 'id')->toArray();
 
 	$view->with('languages', $languages)->with('qualities', $qualities);
 });

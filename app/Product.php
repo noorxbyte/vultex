@@ -21,4 +21,13 @@ class Product extends Model
     {
     	return $this->hasOne('App\Video', 'product_id');
     }
+
+    /**
+     * Get the genres of the product
+     *
+     */
+    public function genres()
+    {
+        return $this->BelongsToMany('App\Genre')->withTimestamps();
+    }
 }

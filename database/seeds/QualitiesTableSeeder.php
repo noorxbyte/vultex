@@ -15,9 +15,9 @@ class QualitiesTableSeeder extends Seeder
         DB::table('qualities')->delete();
  
         $qualities = array(
-            ['id' => 1, 'quality' => 'BRRip', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id' => 2, 'quality' => 'HDRip', 'created_at' => new DateTime, 'updated_at' => new DateTime],
-            ['id' => 3, 'quality' => 'CAM', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 1, 'name' => 'BRRip', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 2, 'name' => 'HDRip', 'created_at' => new DateTime, 'updated_at' => new DateTime],
+            ['id' => 3, 'name' => 'CAM', 'created_at' => new DateTime, 'updated_at' => new DateTime],
         );
  
         // Uncomment the below to run the seeder
