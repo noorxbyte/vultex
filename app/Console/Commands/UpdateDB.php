@@ -54,6 +54,7 @@ class UpdateDB extends Command
             $obj = json_decode($json);
             
             // update fields of the record with JSON data
+            $record->poster = $obj->Poster;
             $record->release_year = $obj->Year;
             $record->genre = $obj->Genre;
 
