@@ -90,22 +90,29 @@ $(document).ready(function() {
 	/*
 	 * Display image on hover 
 	 */
-	$('.imdb').hover(function() {
+	var show_timer;
+	var hide_timer;
+	$('.imdb').mouseenter(function() {
 		var blah = ($(this).attr('id').split("-"))[1];
-		var timeout = setTimeout(function() {
+		show_timer = setTimeout(function() {
 			$("#panel-" + blah).fadeIn('fast');
 		}, 500);
-	}, function() {
+	});
+
+	$('.imdb').mouseleave(function() {
+		clearTimeout(show_timer);
 		var blah = ($(this).attr('id').split("-"))[1];
-		var timeout = setTimeout(function() {
+		hide_timer = setTimeout(function() {
 			$("#panel-" + blah).fadeOut('fast');
 		}, 500);
+	});
 
-		$('.poster').hover(function() {
-			clearTimeout(timeout);
-		}, function() {
-			$("#panel-" + blah).fadeOut('slow');
-		});
+	$('.poster').mouseenter(function() {
+		clearTimeout(hide_timer)
+	});
+
+	$('.poster').mouseleave(function() {
+		$(this).fadeOut('slow');
 	});
 
 });
