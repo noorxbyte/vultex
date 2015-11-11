@@ -87,6 +87,25 @@ $(document).ready(function() {
      	$(this).next().slideToggle('fast');
 	});
 
+	/*
+	 * Display image on hover 
+	 */
+	$('.imdb').hover(function() {
+		var blah = ($(this).attr('id').split("-"))[1];
+		$("#img-" + blah).fadeIn('fast');
+	}, function() {
+		var blah = ($(this).attr('id').split("-"))[1];
+		var timeout = setTimeout(function() {
+			$("#img-" + blah).fadeOut('fast');
+		}, 500);
+
+		$('.poster').hover(function() {
+			clearTimeout(timeout);
+		}, function() {
+			$("#img-" + blah).fadeOut('slow');
+		});
+	});
+
 });
 
 // get imdb data by title

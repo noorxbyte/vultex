@@ -1,6 +1,6 @@
 <!-- pages/_video.blade.php -->
 
-@if(sizeof($video) != 0)
+@if(sizeof($records) != 0)
 	<table class="table table-striped sortable">
 		<thead>
 			@if (Auth::check())
@@ -13,10 +13,10 @@
 			<th>Language</th>
 			<th>Quality</th>
 			<th>Plot</th>
-			<th>Price / Episode</th>
+			<th>Price</th>
 		</thead>
 		<tbody>
-			@foreach($video as $video)
+			@foreach($records as $record)
 				<tr>
 					@if (Auth::check())
 						<td class="col-sm-1">
@@ -30,18 +30,33 @@
 							</div>
 						</td>
 					@endif
-					<td class="col-sm-2 highlightable">{{ $video->name }}</td>
-					<td class="col-sm-1"><a href="http://www.imdb.com/title/{{ $video->video->imdb }}/" target="_blank">{{ $video->video->imdb }}</a></td>
-					<td class="col-sm-1">{{ $video->video->release_year }}</td>
-					<td class="col-sm-2">{{ $video->video->genre }}</td>
-					<td class="col-sm-1">{{ $video->video->language->name }}</td>
-					<td class="col-sm-1">{{ $video->video->quality->name }}</td>
-					<td class="col-sm-{{ Auth::check()?2:3 }} highlightable">{{ $video->description }}</td>
-					<td class="col-sm-1">MVR {{ number_format($video->price, 2) }}</td>
+					<td class="col-sm-2 highlightable">{{ $record->name }}</td>
+					<td class="col-sm-1"><a id="imdb-{{ $record->id }}" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank" class="imdb">{{ $record->video->imdb }}</a></td>
+					<td class="col-sm-1">{{ $record->video->release_year }}</td>
+					<td class="col-sm-2">
+						@foreach($record->genres as $key => $genre)
+							@if($key == (count($record->genres) - 1))
+								{{ $genre->name }}
+							@else
+								{{ $genre->name . ', ' }}
+							@endif
+						@endforeach
+					</td>
+					<td class="col-sm-1">{{ $record->video->language->name }}</td>
+					<td class="col-sm-1">{{ $record->video->quality->name }}</td>
+					<td class="col-sm-{{ Auth::check()?2:3 }}">{{ $record->description }}</td>
+					<td class="col-sm-1">MVR {{ number_format($record->price, 2) }}</td>
+				</tr>
+				<tr>
+					<td colspan="9" class="text-center">
+						<a id="imdb-{{ $record->id }}" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+							<img id="img-{{ $record->id }}" src="{{ $record->video->poster }}" alt="Poster Image" class="img-responsive img-thumbnail img-hidden poster" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+						</a>
+					</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
 @else
-	{{ $emptyMovieMsg or 'No video to show' }}
+	{{ $emptyrecordMsg or 'No records to show' }}
 @endif
