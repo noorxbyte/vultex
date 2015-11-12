@@ -91,17 +91,20 @@ class ProductsController extends Controller
             // set the product id of the details record
             $info->product_id = $product->id;
 
-            // download the poster
-            if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
+            if (!empty($info->imdb) && $info->poster !== "N/A" && !empty($info->poster))
             {
-                $buffer = file_get_contents($info->poster);
-                $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w+');
-                fwrite($file, $buffer);
-                fclose($file);
-            }
+                // download the poster
+                if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
+                {
+                    $buffer = file_get_contents($info->poster);
+                    $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w+');
+                    fwrite($file, $buffer);
+                    fclose($file);
+                }
 
-            // set the poster url
-            $info->poster = '/img/posters/' . $info->imdb . '.jpg';
+                // set the poster url
+                $info->poster = '/img/posters/' . $info->imdb . '.jpg';
+            }
 
             // save the details record
             $info->save();
