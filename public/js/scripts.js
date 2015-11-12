@@ -93,8 +93,10 @@ $(document).ready(function() {
 	var show_timer;
 	var hide_timer;
 	$('.imdb').mouseenter(function() {
+		var imdb = $(this).text();
 		var blah = ($(this).attr('id').split("-"))[1];
 		show_timer = setTimeout(function() {
+			$("#img-" + blah).attr('src', '/img/posters/' + imdb + '.jpg')
 			$("#panel-" + blah).slideDown('slow');
 		}, 500);
 	});

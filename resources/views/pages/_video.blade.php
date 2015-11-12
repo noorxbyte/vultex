@@ -51,7 +51,7 @@
 							<span class="col-sm-3"></span>
 
 							<a href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank" class="col-sm-3">
-								<img id="img-{{ $record->id }}" src="{{ $record->video->poster }}" alt="Poster Image" class="img-responsive img-thumbnail img-poster" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+								<img id="img-{{ $record->id }}" src="#" alt="Poster Image" class="img-responsive img-thumbnail img-poster" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
 							</a>
 
 							<span class="col-sm-3 details">
