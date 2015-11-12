@@ -61,7 +61,7 @@ class UpdateDB extends Command
             $video->release_year = $obj->Year;
 
             // download the poster
-            if (!file_exists('/img/posters/' . $video->imdb . '.jpg'))
+            if (!file_exists('/img/posters/' . $video->imdb . '.jpg') && $obj->Poster !== "N/A")
             {
                 $buffer = file_get_contents($obj->Poster);
                 $file = fopen(public_path() . '/img/posters/' . $video->imdb . '.jpg', 'w+');
