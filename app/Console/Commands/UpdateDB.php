@@ -57,8 +57,17 @@ class UpdateDB extends Command
             
             // update fields of the video with JSON data
             $video->product->name = $obj->Title;
-            $video->poster = $obj->Poster;
+            $video->poster = '/img/posters/' . $video->imdb . '.jpg';
             $video->release_year = $obj->Year;
+
+            // download the poster
+            if (!file_exists('/img/posters/' . $video->imdb . '.jpg'))
+            {
+                $buffer = file_get_contents($obj->Poster);
+                $file = fopen(public_path() . '/img/posters/' . $video->imdb . '.jpg', 'w+');
+                fwrite($file, $buffer);
+                fclose($file);
+            }
 
             // save the video
             $video->save();
