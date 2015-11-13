@@ -91,7 +91,7 @@ class ProductsController extends Controller
             // set the product id of the details record
             $info->product_id = $product->id;
 
-            if (!empty($info->imdb) && $info->poster !== "N/A" && !empty($info->poster))
+            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
             {
                 // download the poster
                 if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
