@@ -23,7 +23,7 @@ class SeriesController extends Controller
         // get all series
         $series = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'SERIES');
 
-        $heading = 'Movies';
+        $heading = 'Series';
 
         // query
         if (!empty($request->q))
@@ -33,7 +33,7 @@ class SeriesController extends Controller
         if (!empty($request->language))
         {
             $series = $series->where('v.language_id', Language::where('name', $request->language)->first()->id);
-            $heading = $request->language . ' Movies';
+            $heading = $request->language . ' Series';
         }
 
         // sort
@@ -46,7 +46,7 @@ class SeriesController extends Controller
         $request->flash();
 
         return view('series.index')
-            ->with('title', 'Movies')
+            ->with('title', 'Series')
             ->with('heading', $heading)
             ->with('series', $series->paginate(env('PAGINATE')));
     }
