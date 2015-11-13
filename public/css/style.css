@@ -12,19 +12,24 @@
     text-align: right;
 }
 
+.video-title
+{
+    font-size: 150%;
+}
+
+.img-poster
+{
+    height: 200px;
+}
+
 .invisible
 {
     visibility: hidden;
 }
 
-.slider-panel, .poster
+.slider-panel
 {
     display: none;
-}
-
-.img-poster, .details
-{
-    margin: 10px;
 }
 
 .toggle {

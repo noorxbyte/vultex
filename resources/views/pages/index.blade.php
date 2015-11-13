@@ -32,22 +32,22 @@
 		<!-- display movie list -->
 		<div id="moviesToggle" class="toggle"><h4>Movies</h4></div>
 		<div id="moviesData" class="slider-panel"><br>
-			@include('pages._video', ['records' => $movies])
+			@include('_video', ['records' => $movies])
 		</div>
 
 		<div id="seriesToggle" class="toggle"><h4>Series</h4></div>
 		<div id="seriesData" class="slider-panel"><br>
-			@include('pages._video', ['records' => $series])
+			@include('_video', ['records' => $series])
 		</div>
 
 		<div id="animeToggle" class="toggle"><h4>Anime</h4></div>
 		<div id="animeData" class="slider-panel"><br>
-			@include('pages._video', ['records' => $anime])
+			@include('_video', ['records' => $anime])
 		</div>
 
 		<div id="videoToggle" class="toggle"><h4>Video</h4></div>
 		<div id="videoData" class="slider-panel"><br>
-			@include('pages._video', ['records' => $video])
+			@include('_video', ['records' => $video])
 		</div>
 
 	</div>

@@ -31,7 +31,21 @@ Route::get('/home', function() {
 });
 
 // main page of the website
-Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
+Route::get('/', ['as' => 'home', 'uses' => function() {
+	return redirect()->route('movies');
+}]);
+
+// movies page
+Route::get('movies', ['as' => 'movies', 'uses' => 'MoviesController@index']);
+
+// series page
+Route::get('series', ['as' => 'series', 'uses' => 'SeriesController@index']);
+
+// anime page
+Route::get('anime', ['as' => 'anime', 'uses' => 'AnimeController@index']);
+
+// documentry page
+Route::get('documentry', ['as' => 'documentry', 'uses' => 'DocumentriesController@index']);
 
 // login routes....
 Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
@@ -68,4 +82,10 @@ View::composer('products.__video', function($view) {
 	$qualities = App\Quality::lists('name', 'id')->toArray();
 
 	$view->with('languages', $languages)->with('qualities', $qualities);
+});
+
+// pass languages into toolbar
+View::composer('_navbar', function($view) {
+	$languages = App\Language::all();
+	$view->with('languages', $languages);
 });
