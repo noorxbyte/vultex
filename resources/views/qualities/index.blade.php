@@ -33,7 +33,7 @@
 								</ul>
 							</div>
 						</td>
-						<td>{{ $quality->quality }}</td>
+						<td>{{ $quality->name }}</td>
 					</tr>
 				@endforeach
 			</tbody>

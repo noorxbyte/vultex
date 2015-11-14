@@ -33,7 +33,7 @@
 								</ul>
 							</div>
 						</td>
-						<td>{{ $language->language }}</td>
+						<td>{{ $language->name }}</td>
 					</tr>
 				@endforeach
 			</tbody>

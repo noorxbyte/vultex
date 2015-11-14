@@ -44,8 +44,8 @@ Route::get('series', ['as' => 'series', 'uses' => 'SeriesController@index']);
 // anime page
 Route::get('anime', ['as' => 'anime', 'uses' => 'AnimeController@index']);
 
-// documentry page
-Route::get('documentry', ['as' => 'documentry', 'uses' => 'DocumentriesController@index']);
+// videos page
+Route::get('videos', ['as' => 'videos', 'uses' => 'VideosController@index']);
 
 // login routes....
 Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);

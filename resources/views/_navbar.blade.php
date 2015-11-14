@@ -28,6 +28,20 @@
                     </ul>
                 </li>
 
+                <!-- anime -->
+                <li><a href="{{ route('anime') }}">Anime</a></li>
+
+                <!-- dropdown videos languages -->
+                <li class="dropdown dropdown-hover">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos') }}">Documentries
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach($languages as $language)
+                            <li><a href="{{ route('videos', ['language' => $language->name]) }}">{{ $language->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+
                 @if(Auth::check())
 
                     <!-- dropdown new -->
