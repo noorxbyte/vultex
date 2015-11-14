@@ -20,6 +20,9 @@ Route::group(['middleware' => 'auth'], function() {
 	// qualities routes
 	Route::resource('qualities', 'QualitiesController');
 
+	// platforms routes
+	Route::resource('platforms', 'PlatformsController');
+
 	// products routes
 	Route::resource('products', 'ProductsController');
 	

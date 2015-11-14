@@ -1,4 +1,4 @@
-<!-- languages/_form.blade.php -->
+<!-- platforms/_form.blade.php -->
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -12,7 +12,7 @@
 
 <div class="text-center">
 	<div class="form-group">
-		{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Language', 'required', 'autofocus']) !!}
+		{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Platform', 'required', 'autofocus']) !!}
 	</div>
 	<div class="form-group">
 		{!! Form::submit($submitBtnText, ['class' => 'btn btn-primary']) !!}

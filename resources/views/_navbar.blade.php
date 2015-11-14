@@ -51,6 +51,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('languages.create') }}">Language</a></li>
                             <li><a href="{{ route('qualities.create') }}">Quality</a></li>
+                            <li><a href="{{ route('platforms.create') }}">Platform</a></li>
                         </ul>
                     </li>
 
@@ -66,8 +67,16 @@
                         </ul>
                     </li>
 
-                    <li><a href="{{ route('languages.index') }}">Languages</a></li>
-                    <li><a href="{{ route('qualities.index') }}">Qualities</a></li>
+                    <!-- dropdown entities -->
+                    <li class="dropdown dropdown-hover">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Other
+                        <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ route('languages.index') }}">Languages</a></li>
+                            <li><a href="{{ route('qualities.index') }}">Qualities</a></li>
+                            <li><a href="{{ route('platforms.index') }}">Platforms</a></li>
+                        </ul>
+                    </li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

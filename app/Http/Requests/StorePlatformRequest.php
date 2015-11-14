@@ -6,7 +6,7 @@ use App\Http\Requests\Request;
 
 use Auth;
 
-class StoreQualityRequest extends Request
+class StorePlatformRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreQualityRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required|max:32|unique:qualities',
+            'name' =>'required|max:32|unique:platforms',
         ];
     }
 }

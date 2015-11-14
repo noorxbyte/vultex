@@ -26,7 +26,7 @@ class StoreLanguageRequest extends Request
     public function rules()
     {
         return [
-            'language' =>'required|max:32|unique:languages',
+            'name' =>'required|max:32|unique:languages',
         ];
     }
 }
