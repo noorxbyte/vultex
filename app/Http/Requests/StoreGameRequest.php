@@ -4,9 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-use Auth;
-
-class StoreProductRequest extends Request
+class StoreGameRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +13,7 @@ class StoreProductRequest extends Request
      */
     public function authorize()
     {
-        return Auth::check();
+        return false;
     }
 
     /**
@@ -26,11 +24,8 @@ class StoreProductRequest extends Request
     public function rules()
     {
         return [
-            'active' => 'required|boolean',
-            'type' => 'required|in:MOVIE,SERIES,ANIME,VIDEO,GAME',
-            'name' => 'required|max:255',
-            'description' => 'required',
-            'price' => 'required|numeric|min:0.01|regex:/^\d*(\.\d{2})?$/',
+            'release_date' => 'required:date',
+            'platform_id' => 'exists:platforms,id',
         ];
     }
 }

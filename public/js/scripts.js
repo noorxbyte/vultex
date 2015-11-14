@@ -9,15 +9,6 @@ $(document).ready(function() {
 	 */
 	$('#dpicker').datepicker({dateFormat: 'dd/mm/yy'});
 
-	// set the current date if empty
-	if (!$('#dpicker').val())
-	{
-		var d = new Date();
-		var currentDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
-
-		$('#dpicker').val(currentDate);
-	}
-
 	// redirect on click dropdown
 	$('.dropdown-toggle').click(function() {
 		window.location.href = $(this).attr('href');

@@ -78,6 +78,14 @@ View::composer('products.__video', function($view) {
 	$view->with('languages', $languages)->with('qualities', $qualities);
 });
 
+// pass platforms list into game page
+View::composer('products.__game', function($view) {
+	// get data
+	$platforms = App\Platform::lists('name', 'id')->toArray();
+
+	$view->with('platforms', $platforms);
+});
+
 // pass languages into toolbar
 View::composer('_navbar', function($view) {
 	$languages = App\Language::all();

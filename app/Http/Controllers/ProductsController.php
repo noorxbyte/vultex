@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\StoreVideoRequest;
+use App\Http\Requests\StoreGameRequest;
 use App\Http\Controllers\Controller;
 
 use App\Product;
 use App\Genre;
 use App\Video;
+use App\Game;
 
 use DB;
 
@@ -34,7 +36,7 @@ class ProductsController extends Controller
      */
     public function create(Request $request)
     {
-        if (empty($request->type) || !in_array($request->type, ['movie', 'series', 'anime', 'video']))
+        if (empty($request->type) || !in_array($request->type, ['movie', 'series', 'anime', 'video', 'game']))
             return redirect()->route('products.index');
 
         $vid_type = $request->type;
@@ -49,6 +51,13 @@ class ProductsController extends Controller
                 $description = 'Plot';
                 $type = 'video';
                 break;
+            case 'game':
+                $name = $namePlaceHolder = ucfirst($request->type) . ' Title';
+                $description = 'Description';
+                $type = 'game';
+                break;
+            default:
+                return redirect()->back();
         }
 
         return view('products.create', compact('title', 'heading', 'vid_type', 'type', 'name', 'namePlaceHolder', 'description'));
@@ -73,13 +82,17 @@ class ProductsController extends Controller
                 $this->validate($request, $valRequest->rules());
                 $info = new Video($request->all());
                 break;
+            case 'GAME':
+                $valRequest = new StoreGameRequest;
+                $this->validate($request, $valRequest->rules());
+                $info = new Game($request->all());
+                break;
         }
-        dd($info);
 
         if (in_array($request->type, ['MOVIE', 'SERIES', 'ANIME', 'VIDEO']))
             $this->StoreVideo($request, $info);
-        else
-            return redirect()->route('products.create', ['type' => strtolower($request->type)]);
+        else if ($request->type == "GAME")
+            $this->StoreGame($request, $info);
 
         // flash message
         session()->flash('flash_message', 'Product added successfully.');
@@ -153,7 +166,7 @@ class ProductsController extends Controller
             if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
             {
                 // download the poster
-                if (!file_exists('/img/posters/' . $info->product_id . '.jpg'))
+                if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
                 {
                     $buffer = file_get_contents($info->poster);
                     $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w+');
@@ -204,19 +217,19 @@ class ProductsController extends Controller
             // set the product id of the details record
             $info->product_id = $product->id;
 
-            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
+            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false)
             {
                 // download the poster
-                if (!file_exists('/img/games/' . $info->id . '.jpg'))
+                if (!file_exists('/img/games/' . $info->product_id . '.jpg'))
                 {
                     $buffer = file_get_contents($info->poster);
-                    $file = fopen(public_path() . '/img/games/' . $info->imdb . '.jpg', 'w+');
+                    $file = fopen(public_path() . '/img/games/' . $info->product_id . '.jpg', 'w+');
                     fwrite($file, $buffer);
                     fclose($file);
                 }
 
                 // set the poster url
-                $info->poster = '/img/games/' . $info->imdb . '.jpg';
+                $info->poster = '/img/games/' . $info->product_id . '.jpg';
             }
 
             // save the details record
