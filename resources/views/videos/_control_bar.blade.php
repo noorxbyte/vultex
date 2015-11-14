@@ -2,7 +2,7 @@
 	<!-- sorting and filter forms -->
 	<span class="pull-left">
 		<div class="form-group">
-			{!! Form::select('sort', ['v.release_year' => 'Year', 'price' => 'Price', 'name' => 'Title'], null, ['class' => 'form-control input-sm']) !!}
+			{!! Form::select('sort', ['v.updated_at' => 'Recently Added', 'v.release_year' => 'Year', 'price' => 'Price', 'name' => 'Title'], null, ['class' => 'form-control input-sm']) !!}
 		</div>
 		<div class="form-group">
 			{!! Form::select('order', ['DESC' => 'Descending', 'ASC' => 'Ascending'], null, ['class' => 'form-control input-sm']) !!}
