@@ -193,11 +193,6 @@ class ProductsController extends Controller
         foreach ($genres as $key => $genre)
             $genres[$key] = trim($genre);
 
-        // get the platforms
-        $platforms = str_getcsv($request->platform);
-        foreach ($platforms as $key => $platform)
-            $platforms[$key] = trim($platform);
-
         // create product record
         $product = Product::create($request->all());
 
@@ -231,31 +226,15 @@ class ProductsController extends Controller
             foreach($genres as $genre)
             {
                 // if genre does not exist create it
-                $record = GGenre::where('name', $genre)->first();
+                $record = Genre::where('name', $genre)->first();
                 if ($record === null)
                 {
-                    $record = GGenre::create(['name' => $genre]);
+                    $record = Genre::create(['name' => $genre]);
                     $product->genres()->attach([$record->id]);
                 }
                 else
                 {
                     $product->genres()->attach([$record->id]);
-                }
-            }
-
-            // add the platforms
-            foreach($platforms as $platform)
-            {
-                // if platform does not exist create it
-                $record = Platform::where('name', $platform)->first();
-                if ($record === null)
-                {
-                    $record = Platform::create(['name' => $platform]);
-                    $product->platforms()->attach([$record->id]);
-                }
-                else
-                {
-                    $product->platforms()->attach([$record->id]);
                 }
             }
         });
