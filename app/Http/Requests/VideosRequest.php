@@ -25,6 +25,7 @@ class VideosRequest extends Request
     {
         return [
             'language' => 'exists:languages,name',
+            'genre' => 'exists:genres,name',
             'sort' => 'in:v.release_year,price,name',
             'order' => 'in:ASC,DESC',
             'q' => 'max:64',

@@ -80,3 +80,10 @@ View::composer('_navbar', function($view) {
 	$languages = App\Language::all();
 	$view->with('languages', $languages);
 });
+
+// pass languages and genres into toolbar
+View::composer('videos._control_bar', function($view) {
+	$languages = App\Language::lists('name', 'name')->toArray();
+	$genres = App\Genre::lists('name', 'name')->toArray();
+	$view->with('languages', $languages)->with('genres', $genres);
+});

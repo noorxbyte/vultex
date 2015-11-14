@@ -20,25 +20,27 @@ class VideosController extends Controller
      */
     public function index($type, VideosRequest $request)
     {
+        $videos = Product::join('videos as v', 'v.product_id', '=', 'id');
+
         switch ($type)
         {
             case "movies":
-                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'MOVIE');
+                $videos = $videos->where('type', 'MOVIE');
                 $title = 'Movies';
                 $heading = 'Movies';
                 break;
             case "series":
-                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'SERIES');
+                $videos = $videos->where('type', 'SERIES');
                 $title = 'Series';
                 $heading = 'Series';
                 break;
             case "anime":
-                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'ANIME');
+                $videos = $videos->where('type', 'ANIME');
                 $title = 'Anime';
                 $heading = 'Anime';
                 break;
             case "documentries":
-                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'VIDEO');
+                $videos = $videos->where('type', 'VIDEO');
                 $title = 'Documentries';
                 $heading = 'Documentries';
                 break;
