@@ -6,14 +6,14 @@
 
 	<!-- main navbar -->
 	<div class="row">
-		@include('videos._control_bar', ['action' => 'VideosController@index', 'searchPlaceHolder' => 'Search Documentries'])
+		@include('videos._control_bar', ['action' => ['VideosController@index', $type], 'searchPlaceHolder' => "Search $title"])
 	</div><hr>
 
 	<!-- data container -->
 	<div class="data">
 
 		<!-- display movie list -->
-		@include('_video', ['records' => $videos])
+		@include('videos._video', ['records' => $videos])
 
 	</div>
 @stop

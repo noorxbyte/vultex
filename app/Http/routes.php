@@ -32,20 +32,11 @@ Route::get('/home', function() {
 
 // main page of the website
 Route::get('/', ['as' => 'home', 'uses' => function() {
-	return redirect()->route('movies');
+	return redirect()->route('videos', 'movies');
 }]);
 
-// movies page
-Route::get('movies', ['as' => 'movies', 'uses' => 'MoviesController@index']);
-
-// series page
-Route::get('series', ['as' => 'series', 'uses' => 'SeriesController@index']);
-
-// anime page
-Route::get('anime', ['as' => 'anime', 'uses' => 'AnimeController@index']);
-
 // videos page
-Route::get('videos', ['as' => 'videos', 'uses' => 'VideosController@index']);
+Route::get('{type}', ['as' => 'videos', 'uses' => 'VideosController@index']);
 
 // login routes....
 Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);

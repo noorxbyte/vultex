@@ -18,23 +18,44 @@ class VideosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(VideosRequest $request)
+    public function index($type, VideosRequest $request)
     {
-        // get all videos
-        $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'VIDEO');
-
-        $heading = 'Series';
-
-        // query
-        if (!empty($request->q))
-            $videos = $videos->where('name', 'LIKE', '%' . $request->q . '%');
+        switch ($type)
+        {
+            case "movies":
+                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'MOVIE');
+                $title = 'Movies';
+                $heading = 'Movies';
+                break;
+            case "series":
+                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'SERIES');
+                $title = 'Series';
+                $heading = 'Series';
+                break;
+            case "anime":
+                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'ANIME');
+                $title = 'Anime';
+                $heading = 'Anime';
+                break;
+            case "documentries":
+                $videos = Product::join('videos as v', 'v.product_id', '=', 'id')->where('type', 'VIDEO');
+                $title = 'Documentries';
+                $heading = 'Documentries';
+                break;
+            default:
+                return redirect()->back();
+        }
 
         // language
         if (!empty($request->language))
         {
             $videos = $videos->where('v.language_id', Language::where('name', $request->language)->first()->id);
-            $heading = $request->language . ' Series';
+            $heading = $request->language . ' ' . $heading;
         }
+
+        // query
+        if (!empty($request->q))
+            $videos = $videos->where('name', 'LIKE', '%' . $request->q . '%');
 
         // sort
         if (!empty($request->sort))
@@ -46,9 +67,10 @@ class VideosController extends Controller
         $request->flash();
 
         return view('videos.index')
-            ->with('title', 'Series')
+            ->with('title', $title)
             ->with('heading', $heading)
-            ->with('videos', $videos->paginate(env('PAGINATE')));
+            ->with('videos', $videos->paginate(env('PAGINATE')))
+            ->with('type', $type);
     }
 
     /**

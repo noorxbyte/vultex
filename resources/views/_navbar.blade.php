@@ -1,4 +1,4 @@
-<!-- Navigation Bar -->
+videos<!-- Navigation Bar -->
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -8,36 +8,36 @@
             <ul class="nav navbar-nav">
                 <!-- dropdown movies languages -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('movies') }}">Movies
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos', 'movies') }}">Movies
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($languages as $language)
-                            <li><a href="{{ route('movies', ['language' => $language->name]) }}">{{ $language->name }}</a></li>
+                            <li><a href="{{ route('videos', 'movies') . '?language=' . $language->name }}">{{ $language->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
 
                 <!-- dropdown series languages -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('series') }}">Series
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos', 'series') }}">Series
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($languages as $language)
-                            <li><a href="{{ route('series', ['language' => $language->name]) }}">{{ $language->name }}</a></li>
+                            <li><a href="{{ route('videos', 'series') . '?language=' . $language->name }}">{{ $language->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
 
                 <!-- anime -->
-                <li><a href="{{ route('anime') }}">Anime</a></li>
+                <li><a href="{{ route('videos', 'anime') }}">Anime</a></li>
 
                 <!-- dropdown videos languages -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos') }}">Documentries
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos', 'documentries') }}">Documentries
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($languages as $language)
-                            <li><a href="{{ route('videos', ['language' => $language->name]) }}">{{ $language->name }}</a></li>
+                            <li><a href="{{ route('videos', 'documentries') . '?language=' . $language->name }}">{{ $language->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
