@@ -74,57 +74,12 @@ class ProductsController extends Controller
                 $info = new Video($request->all());
                 break;
         }
+        dd($info);
 
-        // get the genres
-        $genres = str_getcsv($request->genre);
-        foreach ($genres as $key => $genre)
-            $genres[$key] = trim($genre);
-
-        // create product record
-        $product = Product::create($request->all());
-
-        // use database transaction to save the records
-        DB::transaction(function () use ($product, $info, $genres) {
-            // save the product record
-            $product->save();
-
-            // set the product id of the details record
-            $info->product_id = $product->id;
-
-            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
-            {
-                // download the poster
-                if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
-                {
-                    $buffer = file_get_contents($info->poster);
-                    $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w+');
-                    fwrite($file, $buffer);
-                    fclose($file);
-                }
-
-                // set the poster url
-                $info->poster = '/img/posters/' . $info->imdb . '.jpg';
-            }
-
-            // save the details record
-            $info->save();
-
-            // add the genres
-            foreach($genres as $genre)
-            {
-                // if genre does not exist create it
-                $record = Genre::where('name', $genre)->first();
-                if ($record === null)
-                {
-                    $record = Genre::create(['name' => $genre]);
-                    $product->genres()->attach([$record->id]);
-                }
-                else
-                {
-                    $product->genres()->attach([$record->id]);
-                }
-            }
-        });
+        if (in_array($request->type, ['MOVIE', 'SERIES', 'ANIME', 'VIDEO']))
+            $this->StoreVideo($request, $info);
+        else
+            return redirect()->route('products.create', ['type' => strtolower($request->type)]);
 
         // flash message
         session()->flash('flash_message', 'Product added successfully.');
@@ -175,5 +130,134 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function StoreVideo(Request $request, $info)
+    {
+        // get the genres
+        $genres = str_getcsv($request->genre);
+        foreach ($genres as $key => $genre)
+            $genres[$key] = trim($genre);
+
+        // create product record
+        $product = Product::create($request->all());
+
+        // use database transaction to save the records
+        DB::transaction(function () use ($product, $info, $genres) {
+            // save the product record
+            $product->save();
+
+            // set the product id of the details record
+            $info->product_id = $product->id;
+
+            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
+            {
+                // download the poster
+                if (!file_exists('/img/posters/' . $info->product_id . '.jpg'))
+                {
+                    $buffer = file_get_contents($info->poster);
+                    $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w+');
+                    fwrite($file, $buffer);
+                    fclose($file);
+                }
+
+                // set the poster url
+                $info->poster = '/img/posters/' . $info->product_id . '.jpg';
+            }
+
+            // save the details record
+            $info->save();
+
+            // add the genres
+            foreach($genres as $genre)
+            {
+                // if genre does not exist create it
+                $record = Genre::where('name', $genre)->first();
+                if ($record === null)
+                {
+                    $record = Genre::create(['name' => $genre]);
+                    $product->genres()->attach([$record->id]);
+                }
+                else
+                {
+                    $product->genres()->attach([$record->id]);
+                }
+            }
+        });
+    }
+
+    public function StoreGame(Request $request, $info)
+    {
+        // get the genres
+        $genres = str_getcsv($request->genre);
+        foreach ($genres as $key => $genre)
+            $genres[$key] = trim($genre);
+
+        // get the platforms
+        $platforms = str_getcsv($request->platform);
+        foreach ($platforms as $key => $platform)
+            $platforms[$key] = trim($platform);
+
+        // create product record
+        $product = Product::create($request->all());
+
+        // use database transaction to save the records
+        DB::transaction(function () use ($product, $info, $genres) {
+            // save the product record
+            $product->save();
+
+            // set the product id of the details record
+            $info->product_id = $product->id;
+
+            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
+            {
+                // download the poster
+                if (!file_exists('/img/games/' . $info->id . '.jpg'))
+                {
+                    $buffer = file_get_contents($info->poster);
+                    $file = fopen(public_path() . '/img/games/' . $info->imdb . '.jpg', 'w+');
+                    fwrite($file, $buffer);
+                    fclose($file);
+                }
+
+                // set the poster url
+                $info->poster = '/img/games/' . $info->imdb . '.jpg';
+            }
+
+            // save the details record
+            $info->save();
+
+            // add the genres
+            foreach($genres as $genre)
+            {
+                // if genre does not exist create it
+                $record = GGenre::where('name', $genre)->first();
+                if ($record === null)
+                {
+                    $record = GGenre::create(['name' => $genre]);
+                    $product->genres()->attach([$record->id]);
+                }
+                else
+                {
+                    $product->genres()->attach([$record->id]);
+                }
+            }
+
+            // add the platforms
+            foreach($platforms as $platform)
+            {
+                // if platform does not exist create it
+                $record = Platform::where('name', $platform)->first();
+                if ($record === null)
+                {
+                    $record = Platform::create(['name' => $platform]);
+                    $product->platforms()->attach([$record->id]);
+                }
+                else
+                {
+                    $product->platforms()->attach([$record->id]);
+                }
+            }
+        });
     }
 }
