@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->boolean('active')->default(true);
-            $table->enum('type', ['MOVIE', 'SERIES', 'ANIME', 'VIDEO']);
+            $table->enum('type', ['MOVIE', 'SERIES', 'ANIME', 'VIDEO', 'GAME']);
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 65, 2)->unsigned();

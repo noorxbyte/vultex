@@ -19,7 +19,16 @@ class Product extends Model
      */
     public function video()
     {
-    	return $this->hasOne('App\Video', 'product_id');
+        return $this->hasOne('App\Video', 'product_id');
+    }
+
+    /**
+     * Get the game
+     *
+     */
+    public function game()
+    {
+        return $this->hasOne('App\Game', 'product_id');
     }
 
     /**

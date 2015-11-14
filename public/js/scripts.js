@@ -7,7 +7,7 @@ $(document).ready(function() {
 	/*
 	 * Date time picker
 	 */
-	$('#dpicker').datepicker({dateFormat: 'dd/mm/yy'});
+	$('#dpicker').datepicker({dateFormat: 'yy-mm-dd'});
 
 	// redirect on click dropdown
 	$('.dropdown-toggle').click(function() {

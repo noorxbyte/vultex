@@ -10,7 +10,7 @@
     </div>
 @endif
 
-{!! Form::input('hidden', 'type', isset($vid_type)?strtoupper($vid_type):null, ['id' => 'type']) !!}
+{!! Form::input('hidden', 'type', isset($vid_type)?strtoupper($vid_type):strtoupper($type), ['id' => 'type']) !!}
 
 <div class="form-group">
     <label class="col-md-4 control-label">{{ $name or 'Product Name' }}</label>

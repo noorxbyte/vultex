@@ -42,6 +42,17 @@
                     </ul>
                 </li>
 
+                <!-- dropdown games platforms -->
+                <li class="dropdown dropdown-hover">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('games') }}">Games
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @foreach($platforms as $platform)
+                            <li><a href="{{ route('games') . '?platform=' . $platform->name }}">{{ $platform->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+
                 @if(Auth::check())
 
                     <!-- dropdown new -->

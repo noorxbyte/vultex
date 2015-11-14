@@ -39,7 +39,10 @@ Route::get('/', ['as' => 'home', 'uses' => function() {
 }]);
 
 // videos page
-Route::get('{type}', ['as' => 'videos', 'uses' => 'VideosController@index']);
+Route::get('video/{type}', ['as' => 'videos', 'uses' => 'VideosController@index']);
+
+// games page
+Route::get('games', ['as' => 'games', 'uses' => 'GamesController@index']);
 
 // login routes....
 Route::get('auth/login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
@@ -86,10 +89,11 @@ View::composer('products.__game', function($view) {
 	$view->with('platforms', $platforms);
 });
 
-// pass languages into toolbar
+// pass languages and platforms into toolbar
 View::composer('_navbar', function($view) {
 	$languages = App\Language::all();
-	$view->with('languages', $languages);
+	$platforms = App\Platform::all();
+	$view->with('languages', $languages)->with('platforms', $platforms);
 });
 
 // pass languages and genres into toolbar
@@ -97,4 +101,11 @@ View::composer('videos._control_bar', function($view) {
 	$languages = App\Language::lists('name', 'name')->toArray();
 	$genres = App\Genre::lists('name', 'name')->toArray();
 	$view->with('languages', $languages)->with('genres', $genres);
+});
+
+// pass platforms and genres into toolbar
+View::composer('games._control_bar', function($view) {
+	$platforms = App\Platform::lists('name', 'name')->toArray();
+	$genres = App\Genre::lists('name', 'name')->toArray();
+	$view->with('platforms', $platforms)->with('genres', $genres);
 });
