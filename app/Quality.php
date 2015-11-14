@@ -11,5 +11,5 @@ class Quality extends Model
      *
      * @var array
      */
-    protected $fillable = ['quality'];
+    protected $fillable = ['name'];
 }

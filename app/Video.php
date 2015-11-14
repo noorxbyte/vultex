@@ -23,7 +23,7 @@ class Video extends Model
     ];
 
     /**
-     * Get the product info of series
+     * Get the product info of video
      *
      */
     public function product()
@@ -32,7 +32,7 @@ class Video extends Model
     }
 
     /**
-     * Get the language of series
+     * Get the language of video
      *
      */
     public function language()
@@ -41,7 +41,7 @@ class Video extends Model
     }
 
     /**
-     * Get the quality of series
+     * Get the quality of video
      *
      */
     public function quality()

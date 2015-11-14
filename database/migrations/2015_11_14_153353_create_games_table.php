@@ -16,7 +16,8 @@ class CreateGamesTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->primary('product_id');
-            $table->date('release_date')->nullable();
+            $table->string('poster')->nullable();
+            $table->date('release_date');
             $table->integer('platform_id')->unsigned();
             $table->foreign('platform_id')->references('id')->on('platforms');
             $table->timestamps();
