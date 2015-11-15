@@ -89,19 +89,23 @@
                             <li><a href="{{ route('platforms.index') }}">Platforms</a></li>
                         </ul>
                     </li>
+                @endif
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown dropdown-hover">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}
-                        <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-                            <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-out"></span> <strong>Logout</strong></a></li>
-                        </ul>
-                    </li>
-                @endif
-            </ul>
+                    @if (Auth::check())
+                        <li class="dropdown dropdown-hover">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }}
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                                <li><a href="{{ route('logout') }}"><span class="glyphicon glyphicon-log-out"></span> <strong>Logout</strong></a></li>
+                            </ul>
+                        </li>
+                    @else
+                        <li><a href="http://www.facebook.com/messages/Vultex.mv/"><span class="glyphicon glyphicon-shopping-cart"></span> <strong>Order Now</strong></a></li>
+                    @endif
+                </ul>
             </ul>
         </div>
     </div>

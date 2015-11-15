@@ -41,7 +41,9 @@
 
         <!-- header -->
         <div id="header" class="text-center">
-            <h1>Vultex</h1>
+            <a href="/">
+                <img src="/img/cover.png" alt="Vultex Cover" class="img-responsive cover"/>
+            </a>
             <hr/>
 
             <!-- Navigation Bar -->

@@ -12,6 +12,11 @@
     text-align: right;
 }
 
+.cover
+{
+    margin: 0 auto;
+}
+
 .video-title
 {
     font-size: 150%;
