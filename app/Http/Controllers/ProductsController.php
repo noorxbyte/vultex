@@ -175,7 +175,7 @@ class ProductsController extends Controller
                 }
 
                 // set the poster url
-                $info->poster = '/img/posters/' . $info->product_id . '.jpg';
+                $info->poster = '/img/posters/' . $info->imdb . '.jpg';
             }
 
             // save the details record
