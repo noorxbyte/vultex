@@ -9,6 +9,9 @@ $(document).ready(function() {
 	 */
 	$('#dpicker').datepicker({dateFormat: 'yy-mm-dd'});
 
+	// equal height all footer panels
+	$('.equal .panel').matchHeight();
+
 	// redirect on click dropdown
 	$('.dropdown-toggle').click(function() {
 		window.location.href = $(this).attr('href');

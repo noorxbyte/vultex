@@ -29,6 +29,8 @@
     <!-- Table sort script -->
     <script src="/js/sorttable.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.matchHeight/0.6.0/jquery.matchHeight.js"></script>
+
     <!-- Search highlight script -->
     <script src=""></script>
 
@@ -77,7 +79,7 @@
         <br><br><br>
         <hr style="height:2px;border:none;color:#C0C0C0;background-color:#C0C0C0;" />
 
-        <div id="footer">
+        <div id="footer" class="container-fluid">
             @include('_footer')
             <!-- footer -->
             <div id="bottom"><hr/>Copyright © 2015 Vultex</div>
