@@ -103,7 +103,7 @@
                             </ul>
                         </li>
                     @else
-                        <li><a href="http://www.facebook.com/messages/Vultex.mv/"><span class="glyphicon glyphicon-shopping-cart"></span> <strong>Order Now</strong></a></li>
+                        <li><a href="http://www.facebook.com/messages/Vultex.mv/" target="_blank"><span class="glyphicon glyphicon-shopping-cart"></span> <strong>Order Now</strong></a></li>
                     @endif
                 </ul>
             </ul>
