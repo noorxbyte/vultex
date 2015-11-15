@@ -37,6 +37,8 @@
 
 </head>
 <body>
+    @include('_scripts')
+
     <div class="container">
 
         <!-- header -->
@@ -72,8 +74,14 @@
             
         </div>
 
-        <!-- footer -->
-        <div id="bottom"><hr/>Copyright © 2015 Vultex</div>
+        <br><br><br>
+        <hr style="height:2px;border:none;color:#C0C0C0;background-color:#C0C0C0;" />
+
+        <div id="footer">
+            @include('_footer')
+            <!-- footer -->
+            <div id="bottom"><hr/>Copyright © 2015 Vultex</div>
+        </div>
 
     </div>
 </body>
