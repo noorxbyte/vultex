@@ -24,7 +24,7 @@
 									<button class="btn btn-default dropdown-toggle btn-xs" type="button" data-toggle="dropdown">Actions
 									<span class="caret"></span></button>
 									<ul class="dropdown-menu">
-										<li><a href="#">Edit</a></li>
+										<li><a href="{{ route('products.edit', $record->id) . '?type=video' }}">Edit</a></li>
 										<li><a href="#" class="btn-del">Delete</a></li>
 									</ul>
 								</div>

@@ -106,9 +106,9 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+    	//
     }
 
     /**
@@ -117,9 +117,32 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        if (empty($request->type) || !in_array($request->type, ['movie', 'series', 'anime', 'video', 'game']))
+            return redirect()->route('products.index');
+
+        $product = Product::with('video')->find($id);
+
+        $vid_type = $request->type;
+        $title = $heading = 'Edit ' . ucfirst($request->type);
+
+        switch ($product->type)
+        {
+        	case 'MOVIE':
+            case 'SERIES':
+            case 'ANIME':
+            case 'VIDEO':
+                $type = 'video';
+                break;
+            case 'GAME':
+                $type = 'game';
+                break;
+            default:
+            	return redirect()->back();
+        }
+
+        return view('products.edit', compact('title', 'heading', 'vid_type', 'type', 'name', 'namePlaceHolder', 'description', 'product'));
     }
 
     /**

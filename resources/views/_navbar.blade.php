@@ -8,7 +8,7 @@
             <ul class="nav navbar-nav">
                 <!-- dropdown movies languages -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos', 'movies') }}">Movies
+                    <a class="dropdown-toggle dropdown-clickable" data-toggle="dropdown" href="{{ route('videos', 'movies') }}">Movies
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($languages as $language)
@@ -19,7 +19,7 @@
 
                 <!-- dropdown series languages -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos', 'series') }}">Series
+                    <a class="dropdown-toggle dropdown-clickable" data-toggle="dropdown" href="{{ route('videos', 'series') }}">Series
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($languages as $language)
@@ -33,7 +33,7 @@
 
                 <!-- dropdown videos languages -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('videos', 'documentries') }}">Documentries
+                    <a class="dropdown-toggle dropdown-clickable" data-toggle="dropdown" href="{{ route('videos', 'documentries') }}">Documentries
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($languages as $language)
@@ -44,7 +44,7 @@
 
                 <!-- dropdown games platforms -->
                 <li class="dropdown dropdown-hover">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="{{ route('games') }}">Games
+                    <a class="dropdown-toggle dropdown-clickable" data-toggle="dropdown" href="{{ route('games') }}">Games
                     <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         @foreach($platforms as $platform)

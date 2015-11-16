@@ -13,7 +13,7 @@ $(document).ready(function() {
 	$('.equal .panel').matchHeight();
 
 	// redirect on click dropdown
-	$('.dropdown-toggle').click(function() {
+	$('.dropdown-clickable').click(function() {
 		window.location.href = $(this).attr('href');
 	});
 
