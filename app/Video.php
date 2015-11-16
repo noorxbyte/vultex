@@ -16,7 +16,8 @@ class Video extends Model
     protected $fillable = [
         'poster',
         'imdb', 
-        'release_year', 
+        'release_year',
+        'release_date', 
         'genre', 
         'language_id', 
         'quality_id'

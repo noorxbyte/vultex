@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class VideosRequest extends Request
+class UpdateVideoRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class VideosRequest extends Request
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,11 +24,11 @@ class VideosRequest extends Request
     public function rules()
     {
         return [
-            'language' => 'exists:languages,name',
-            'genre' => 'exists:genres,name',
-            'sort' => 'in:v.release_date,v.updated_at,v.release_year,price,name',
-            'order' => 'in:ASC,DESC',
-            'q' => 'max:64',
+            'imdb' => 'unique:videos',
+            'release_year' => 'int',
+            'release_date' => 'date',
+            'language_id' => 'exists:languages,id',
+            'quality_id' => 'exists:qualities,id',
         ];
     }
 }

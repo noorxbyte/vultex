@@ -63,7 +63,7 @@ class VideosController extends Controller
         if (!empty($request->sort))
             $videos = $videos->orderBy($request->sort, $request->order);
         else
-            $videos = $videos->orderBy('v.updated_at', 'desc');
+            $videos = $videos->orderBy('v.release_date', 'desc');
 
         // flash input
         $request->flash();

@@ -24,6 +24,13 @@
 </div>
 
 <div class="form-group">
+    <label class="col-md-4 control-label">Release Date</label>
+        <div class="col-md-4">
+            {!! Form::text(isset($product)?'video[release_date]':'release_date', null, ['id' => 'dpicker', 'class' => 'form-control release_date', 'placeholder' => 'Release Date']) !!}
+        </div>
+</div>
+
+<div class="form-group">
     <label class="col-md-4 control-label">Genre</label>
         <div class="col-md-4">
             {!! Form::text(isset($product)?'video[genre]':'genre', null, ['id' => 'genre', 'class' => 'form-control', 'placeholder' => 'Genre']) !!}

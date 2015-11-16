@@ -59,6 +59,7 @@ class UpdateDB extends Command
             $video->product->name = $obj->Title;
             $video->poster = '/img/posters/' . $video->imdb . '.jpg';
             $video->release_year = $obj->Year;
+            $video->release_date = new \DateTime($obj->Released);
 
             // download the poster
             if (!file_exists('/img/posters/' . $video->imdb . '.jpg') && filter_var($obj->Poster, FILTER_VALIDATE_URL) !== false)

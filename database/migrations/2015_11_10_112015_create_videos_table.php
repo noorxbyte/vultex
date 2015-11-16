@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->string('poster')->nullable();
             $table->string('imdb', 16)->nullable();
             $table->string('release_year');
+            $table->date('release_date')->nullable();
             $table->string('genre')->nullable();
             $table->integer('language_id')->unsigned();
             $table->foreign('language_id')->references('id')->on('languages');

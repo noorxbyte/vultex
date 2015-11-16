@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\StoreGameRequest;
+use App\Http\Requests\UpdateVideoRequest;
+use App\Http\Requests\UpdateGameRequest;
 use App\Http\Controllers\Controller;
 
 use App\Product;
@@ -154,7 +156,36 @@ class ProductsController extends Controller
      */
     public function update(StoreProductRequest $request, $id)
     {
-        //
+    	$product = Product::find($id)->fill($request->all());
+    	$product->type = Product::find($id)->type;
+
+        // validate request further according to type
+        switch ($request->type)
+        {
+            case 'MOVIE':
+            case 'SERIES':
+            case 'ANIME':
+            case 'VIDEO':
+                $valRequest = new UpdateVideoRequest;
+                $this->validate($request, $valRequest->rules());
+                $info = Video::find($product->id)->fill($request->video);
+                break;
+            case 'GAME':
+                $valRequest = new UpdateGameRequest;
+                $this->validate($request, $valRequest->rules());
+                $info = Game::find($product->id)->fill($request->video);
+                break;
+        }
+
+        if (in_array($request->type, ['MOVIE', 'SERIES', 'ANIME', 'VIDEO']))
+            $this->UpdateVideo($request, $product, $info);
+        else if ($request->type == "GAME")
+            $this->UpdateGame($request, $product, $info);
+
+        // flash message
+        session()->flash('flash_message', 'Product updated successfully.');
+
+        return redirect()->route('home');
     }
 
     /**
@@ -168,6 +199,7 @@ class ProductsController extends Controller
         //
     }
 
+    // store new video record
     public function StoreVideo(Request $request, $info)
     {
         // get the genres
@@ -176,7 +208,7 @@ class ProductsController extends Controller
             $genres[$key] = trim($genre);
 
         // create product record
-        $product = Product::create($request->all());
+        $product = new Product($request->all());
 
         // use database transaction to save the records
         DB::transaction(function () use ($product, $info, $genres) {
@@ -192,7 +224,7 @@ class ProductsController extends Controller
                 if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
                 {
                     $buffer = file_get_contents($info->poster);
-                    $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w+');
+                    $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w');
                     fwrite($file, $buffer);
                     fclose($file);
                 }
@@ -222,6 +254,59 @@ class ProductsController extends Controller
         });
     }
 
+    // update video record
+    public function UpdateVideo(Request $request, $product, $info)
+    {
+        // get the genres
+        $genres = str_getcsv($request->video['genre']);
+        foreach ($genres as $key => $genre)
+            $genres[$key] = trim($genre);
+
+        // use database transaction to save the records
+        DB::transaction(function () use ($product, $info, $genres) {
+            // save the product record
+            $product->save();
+
+            if (filter_var($info->poster, FILTER_VALIDATE_URL) !== false && !empty($info->imdb))
+            {
+                // download the poster
+                if (!file_exists('/img/posters/' . $info->imdb . '.jpg'))
+                {
+                    $buffer = file_get_contents($info->poster);
+                    $file = fopen(public_path() . '/img/posters/' . $info->imdb . '.jpg', 'w');
+                    fwrite($file, $buffer);
+                    fclose($file);
+                }
+
+                // set the poster url
+                $info->poster = '/img/posters/' . $info->imdb . '.jpg';
+            }
+
+            // save the details record
+            $info->save();
+
+            // delete the genres
+            DB::table('genre_product')->where('product_id', $product->id)->delete();
+
+            // add the genres
+            foreach($genres as $genre)
+            {
+                // if genre does not exist create it
+                $record = Genre::where('name', $genre)->first();
+                if ($record === null)
+                {
+                    $record = Genre::create(['name' => $genre]);
+                    $product->genres()->attach([$record->id]);
+                }
+                else
+                {
+                    $product->genres()->attach([$record->id]);
+                }
+            }
+        });
+    }
+
+    // store new game record
     public function StoreGame(Request $request, $info)
     {
         // get the genres
@@ -230,7 +315,7 @@ class ProductsController extends Controller
             $genres[$key] = trim($genre);
 
         // create product record
-        $product = Product::create($request->all());
+        $product = new Product($request->all());
 
         // use database transaction to save the records
         DB::transaction(function () use ($product, $info, $genres) {
@@ -246,7 +331,7 @@ class ProductsController extends Controller
                 if (!file_exists('/img/games/' . $info->product_id . '.jpg'))
                 {
                     $buffer = file_get_contents($info->poster);
-                    $file = fopen(public_path() . '/img/games/' . $info->product_id . '.jpg', 'w+');
+                    $file = fopen(public_path() . '/img/games/' . $info->product_id . '.jpg', 'w');
                     fwrite($file, $buffer);
                     fclose($file);
                 }

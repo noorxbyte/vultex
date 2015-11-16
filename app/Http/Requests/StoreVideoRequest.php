@@ -26,6 +26,7 @@ class StoreVideoRequest extends Request
         return [
             'imdb' => 'unique:videos',
             'release_year' => 'required',
+            'release_date' => 'date',
             'language_id' => 'exists:languages,id',
             'quality_id' => 'exists:qualities,id',
         ];

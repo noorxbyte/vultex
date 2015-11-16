@@ -113,6 +113,7 @@ function getHTTP(url)
 			$('#poster').val(obj.Poster);
 			$('#title').val(obj.Title);
 			$('#release_year').val(obj.Year);
+			$('.release_date').val(formatDate(obj.Released));
 			$('#plot').val(obj.Plot);
 			$('#genre').val(obj.Genre);
 			$('#check_imdb').attr('href', "http://www.imdb.com/title/" + obj.imdbID + "/");
@@ -123,4 +124,16 @@ function getHTTP(url)
 			$('#imdb, #release_year, #plot, #genre').val("");
 		}
     });
+}
+
+function formatDate(date) {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return [year, month, day].join('-');
 }
