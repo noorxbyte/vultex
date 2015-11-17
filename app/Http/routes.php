@@ -28,6 +28,11 @@ Route::group(['middleware' => 'auth'], function() {
 	
 });
 
+
+/************************************** --- **************************************/
+
+
+
 // redirect home to root
 Route::get('/home', function() {
 	return redirect()->route('home');
@@ -50,6 +55,15 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 // logout route...
 Route::get('auth/logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
+
+
+
+/************************************** --- **************************************/
+
+
+
+Route::get('tools/vigenere', ['as' => 'vigenere', 'uses' => 'PagesController@vigenere']);
+Route::post('tools/vigenere', ['as' => 'vigenerePOST', 'uses' => 'PagesController@vigenereAction']);
 
 
 

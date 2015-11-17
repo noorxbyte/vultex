@@ -53,6 +53,15 @@
                     </ul>
                 </li>
 
+                <!-- dropdown tools -->
+                <li class="dropdown dropdown-hover">
+                    <a class="dropdown-toggle dropdown-clickable" data-toggle="dropdown" href="#">Tools
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('vigenere') }}">Vigenère Cipher</a></li>
+                    </ul>
+                </li>
+
                 @if(Auth::check())
 
                     <!-- dropdown new -->
