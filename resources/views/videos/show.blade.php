@@ -2,6 +2,9 @@
 
 @extends('master')
 
+<?php $image_src =   file_exists(public_path() . $record->video->poster)?$record->video->poster:'/img/null.jpg' ?>
+<?php $description = $record->description ?>
+
 @section('content')
 
 	<input type="hidden" id="imdbShow" value="{{ $record->video->imdb }}">
@@ -60,7 +63,7 @@
 						</tr>
 						<tr>
 							<td><b>Plot:</b></td>
-							<td>{{ $record->description }}</td>
+							<td><span id="plot"></span></td>
 						</tr>
 					</tbody>
 				</table>

@@ -37,6 +37,10 @@
     <!-- Custom scripts -->
     <script src="/js/scripts.js"></script>
 
+    <!-- Facebook tags -->
+    <link rel="image_src" href="{{ $image_src or null }}" / >
+    <meta name="description" content="{{ $description or null }}" />
+
 </head>
 <body>
     @include('_scripts')

@@ -91,7 +91,7 @@ $(document).ready(function() {
 	 */
 	if ($('#imdbShow'))
 	{
-		var url = "http://www.omdbapi.com/?i=" + $('#imdbShow').val();
+		var url = "http://www.omdbapi.com/?plot=full&i=" + $('#imdbShow').val();
 
 		// get imdb data
 		$.get(url, function(data, status){
@@ -113,6 +113,7 @@ function fillShow(obj)
 	$('#runtime').text(obj.Runtime);
 	$('#actors').text(obj.Actors);
 	$('#awards').text(obj.Awards);
+	$('#plot').text(obj.Plot);
 }
 
 // get imdb data by title
