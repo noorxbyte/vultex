@@ -24,7 +24,7 @@ Route::group(['middleware' => 'auth'], function() {
 	Route::resource('platforms', 'PlatformsController');
 
 	// products routes
-	Route::resource('products', 'ProductsController');
+	Route::resource('products', 'ProductsController', ['except' => ['show']]);
 	
 });
 
@@ -42,6 +42,8 @@ Route::get('/home', function() {
 Route::get('/', ['as' => 'home', 'uses' => function() {
 	return redirect()->route('videos', 'movies');
 }]);
+
+Route::get('products/{id}', ['as' => 'products.show', 'uses' => 'ProductsController@show']);
 
 // videos page
 Route::get('video/{type}', ['as' => 'videos', 'uses' => 'VideosController@index']);
