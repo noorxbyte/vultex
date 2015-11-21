@@ -32,11 +32,11 @@
 						@endif
 						<td  class="{{ Auth::check()?'col-sm-2':'col-sm-3' }}">
 							<a href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
-								<img src="{{ file_exists(public_path() . $record->video->poster)?$record->video->poster:'/img/null.jpg' }}" alt="Poster Image" class="img-responsive img-thumbnail img-poster" href="http://www.imdb.com/title/{{ $record->video->imdb }}/" target="_blank">
+								<img src="{{ file_exists(public_path() . $record->video->poster)?$record->video->poster:'/img/null.jpg' }}" alt="Poster Image" class="img-responsive img-thumbnail img-poster">
 							</a>
 						</td>
 						<td class="col-sm-3">
-							<b class="video-title highlightable">{{ $record->name }}</b><hr style="margin:5px">
+							<b class="video-title highlightable"><a href="{{ route('products.show', $record->id) }}">{{ $record->name }}</a></b><hr style="margin:5px">
 							{{ $record->description }}
 						</td>
 						<td class="col-sm-1">{{ $record->video->release_year }}</td>

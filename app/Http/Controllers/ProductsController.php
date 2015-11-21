@@ -108,9 +108,25 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
-    	//
+    	$record = Product::find($id);
+
+        switch ($record->type)
+        {
+            case 'MOVIE':
+            case 'SERIES':
+            case 'ANIME':
+            case 'VIDEO':
+                return view('videos.show')
+                    ->with('title', 'Product Details')
+                    ->with('heading', 'Product Details')
+                    ->with('record', $record);
+                break;
+            case 'GAME':
+            default:
+                return redirect()->back();
+        }    
     }
 
     /**

@@ -86,7 +86,34 @@ $(document).ready(function() {
      	$(this).next().slideToggle('fast');
 	});
 
+	/*
+	 * Show page
+	 */
+	if ($('#imdbShow'))
+	{
+		var url = "http://www.omdbapi.com/?i=" + $('#imdbShow').val();
+
+		// get imdb data
+		$.get(url, function(data, status){
+			data = JSON.stringify(data);
+			obj = jQuery.parseJSON(data);
+			fillShow(obj);
+	    });
+	}
+
 });
+
+// fill show
+function fillShow(obj)
+{
+	$('#director').text(obj.Director);
+	$('#rating').text(obj.imdbRating + '/10');
+	$('#genre').text(obj.Genre);
+	$('#rated').text(obj.Rated);
+	$('#runtime').text(obj.Runtime);
+	$('#actors').text(obj.Actors);
+	$('#awards').text(obj.Awards);
+}
 
 // get imdb data by title
 function getIMDBByTitle()
