@@ -92,38 +92,47 @@ $(document).ready(function() {
 function getIMDBByTitle()
 {
 	var url = "http://www.omdbapi.com/?t=" + document.getElementById("title").value;
-	getHTTP(url);
+	
+	// get imdb data
+	$.get(url, function(data, status){
+		data = JSON.stringify(data);
+		obj = jQuery.parseJSON(data);
+		fillForm(obj);
+    });
 }
 
 // get imdb data by imdb id
 function getIMDBByID()
 {
 	var url = "http://www.omdbapi.com/?i=" + document.getElementById("imdb").value;
-	getHTTP(url);
-}
-
-function getHTTP(url)
-{
+	
+	// get imdb data
 	$.get(url, function(data, status){
 		data = JSON.stringify(data);
-		var obj = jQuery.parseJSON(data);
-		if ((obj.Type.toUpperCase() === $('#type').val().toUpperCase()) || ($('#type').val().toUpperCase() === "ANIME") || ($('#type').val().toUpperCase() === "VIDEO"))
-		{
-			$('#imdb').val(obj.imdbID);
-			$('#poster').val(obj.Poster);
-			$('#title').val(obj.Title);
-			$('#release_year').val(obj.Year);
-			$('.release_date').val(formatDate(obj.Released));
-			$('#plot').val(obj.Plot);
-			$('#genre').val(obj.Genre);
-			$('#check_imdb').attr('href', "http://www.imdb.com/title/" + obj.imdbID + "/");
-			$('#check_poster').attr('href', obj.Poster);
-		}
-		else
-		{
-			$('#imdb, #release_year, #plot, #genre').val("");
-		}
+		obj = jQuery.parseJSON(data);
+		fillForm(obj);
     });
+}
+
+// fill the form
+function fillForm(obj)
+{
+	if ((obj.Type.toUpperCase() === $('#type').val().toUpperCase()) || ($('#type').val().toUpperCase() === "ANIME") || ($('#type').val().toUpperCase() === "VIDEO"))
+	{
+		$('#imdb').val(obj.imdbID);
+		$('#poster').val(obj.Poster);
+		$('#title').val(obj.Title);
+		$('#release_year').val(obj.Year);
+		$('.release_date').val(formatDate(obj.Released));
+		$('#plot').val(obj.Plot);
+		$('#genre').val(obj.Genre);
+		$('#check_imdb').attr('href', "http://www.imdb.com/title/" + obj.imdbID + "/");
+		$('#check_poster').attr('href', obj.Poster);
+	}
+	else
+	{
+		$('#imdb, #release_year, #plot, #genre').val("");
+	}
 }
 
 function formatDate(date) {
