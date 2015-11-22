@@ -119,8 +119,8 @@ class ProductsController extends Controller
             case 'ANIME':
             case 'VIDEO':
                 return view('videos.show')
-                    ->with('title', 'Product Details')
-                    ->with('heading', 'Product Details')
+                    ->with('title', $record->name)
+                    ->with('heading', $record->name)
                     ->with('record', $record);
                 break;
             case 'GAME':
