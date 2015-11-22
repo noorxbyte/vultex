@@ -41,6 +41,9 @@
     <link rel="image_src" href="{{ $image_src or null }}" / >
     <meta name="description" content="{{ $description or null }}" />
 
+    <!-- Google meta tags -->
+    <meta name="google-site-verification" content="jSLtfVRylTbydr1T49mTOFPccryKNpHnKhTPfDlGFGw" />
+
 </head>
 <body>
     @include('_scripts')
