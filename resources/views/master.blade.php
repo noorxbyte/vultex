@@ -2,6 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+    <?php $default_description = "
+        Vultex was formed in 2015 with the goal to provide the best quality entertainment 
+        material for Maldivians of all ages! Currently, Vultex has the largest database 
+        of entertainment materials with over 1200 movies, series, anime and games. 
+        The policy of Vultex is to provide the goods at the best available quality for the 
+        cheapest price. Vultex takes pride in its objective to deliver or offer all products 
+        within 4 days of order. Focused on Addu (Mainly Hithadhoo) in Maldives we are the ones 
+        to contact for the latest entertainment without spending your internet." ?>
+
+    <meta name="description" content="{{ $description or $default_description }}" />
+
+    <!-- Facebook meta tags -->
+    <meta property="og:title" content="{{ $title }}" />
+    <meta property="og:site_name" content="Vultex"/>
+    <meta property="og:description" content="{{ $description or $default_description }}" />
+    <meta property="fb:app_id" content="788092467961510" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="{{ $image_src or '/img/logo.jpg' }}" />
+
+    <!-- Google meta tags -->
+    <meta name="google-site-verification" content="jSLtfVRylTbydr1T49mTOFPccryKNpHnKhTPfDlGFGw" />
+
     <title>Vultex: {{ $title }}</title>
 
     <!-- favicon -->
@@ -36,13 +59,6 @@
 
     <!-- Custom scripts -->
     <script src="/js/scripts.js"></script>
-
-    <!-- Facebook tags -->
-    <link rel="image_src" href="{{ $image_src or null }}" / >
-    <meta name="description" content="{{ $description or null }}" />
-
-    <!-- Google meta tags -->
-    <meta name="google-site-verification" content="jSLtfVRylTbydr1T49mTOFPccryKNpHnKhTPfDlGFGw" />
 
 </head>
 <body>
