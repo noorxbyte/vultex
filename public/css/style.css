@@ -32,11 +32,6 @@
     visibility: hidden;
 }
 
-.slider-panel
-{
-    display: none;
-}
-
 .toggle {
     padding: 5px;
     text-align: center;

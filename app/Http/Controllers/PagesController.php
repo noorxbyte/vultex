@@ -2,22 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Quotation;
 use Illuminate\Http\Request;
 use App\Http\Requests\VigenereRequest;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\Product;
+use App\Video;
 
 class PagesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Home page
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function home(Request $request)
     {
-        //
+        $movies = Product::where('type', 'MOVIE')->orderBy(\DB::raw('RAND()'))->take(5)->get();
+        $series = Product::where('type', 'SERIES')->orderBy(\DB::raw('RAND()'))->take(5)->get();
+        $animes = Product::where('type', 'ANIME')->orderBy(\DB::raw('RAND()'))->take(5)->get();
+        $videos = Product::where('type', 'VIDEO')->orderBy(\DB::raw('RAND()'))->take(5)->get();
+        $games  = Product::where('type', 'GAME')->orderBy(\DB::raw('RAND()'))->take(5)->get();
+
+        return view('pages.index', compact('movies', 'series', 'animes', 'videos', 'games'))
+            ->with('title', 'Home')
+            ->with('heading', 'Welcome');
     }
 
     /**

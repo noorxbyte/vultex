@@ -39,9 +39,7 @@ Route::get('/home', function() {
 });
 
 // main page of the website
-Route::get('/', ['as' => 'home', 'uses' => function() {
-	return redirect()->route('videos', 'movies');
-}]);
+Route::get('/', ['as' => 'home', 'uses' => 'PagesController@home']);
 
 Route::get('products/{id}', ['as' => 'products.show', 'uses' => 'ProductsController@show']);
 
